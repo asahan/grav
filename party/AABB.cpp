@@ -83,7 +83,7 @@ Vector3h AABB::ClosestPoint(const BoundingSphere& other) const
 		
 	if(mMin.z > center.z)
 		ret.z = mMin.z;
-	if(mMax.z < center.z)
+	else if(mMax.z < center.z)
 		ret.z = mMax.z;
 	else
 		ret.z = center.z;
@@ -113,6 +113,7 @@ bool AABB::ComputeCollision( const BoundingSphere& other,Vector3h& CollisionNorm
 	{
 		penetration = redius - CollisionNormal.Size();
 		CollisionNormal.normalize();
-	}
+	
 		return true;
+	}
 }

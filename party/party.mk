@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=party
 ConfigurationName      :=Debug
-WorkspacePath          := "C:\Users\asahan\Documents\Asahan File\hello\grav"
-ProjectPath            := "C:\Users\asahan\Documents\Asahan File\hello\grav\party"
+WorkspacePath          := "C:\Users\Administrator\Documents\CodeLite\grav"
+ProjectPath            := "C:\Users\Administrator\Documents\CodeLite\grav\party"
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=asahan
-Date                   :=10/22/14
-CodeLitePath           :="C:\Program Files (x86)\CodeLite"
+User                   :=Administrator
+Date                   :=10/23/14
+CodeLitePath           :="C:\Program Files\CodeLite"
 LinkerName             :=C:\MinGW-4.8.1\bin\g++.exe 
 SharedObjectLinkerName :=C:\MinGW-4.8.1\bin\g++.exe -shared -fPIC
 ObjectSuffix           :=.o
@@ -61,7 +61,7 @@ AS       := C:\MinGW-4.8.1\bin\as.exe
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=C:\Program Files (x86)\CodeLite
+CodeLiteDir:=C:\Program Files\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
 Objects0=$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CRect.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) \
@@ -93,7 +93,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/instGame.cpp$(ObjectSuffix): instGame.cpp $(IntermediateDirectory)/instGame.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/instGame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/instGame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/instGame.cpp$(DependSuffix): instGame.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/instGame.cpp$(DependSuffix) -MM "instGame.cpp"
 
@@ -101,7 +101,7 @@ $(IntermediateDirectory)/instGame.cpp$(PreprocessSuffix): instGame.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/instGame.cpp$(PreprocessSuffix) "instGame.cpp"
 
 $(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix): CollisionHandler.cpp $(IntermediateDirectory)/CollisionHandler.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CollisionHandler.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CollisionHandler.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CollisionHandler.cpp$(DependSuffix): CollisionHandler.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CollisionHandler.cpp$(DependSuffix) -MM "CollisionHandler.cpp"
 
@@ -109,7 +109,7 @@ $(IntermediateDirectory)/CollisionHandler.cpp$(PreprocessSuffix): CollisionHandl
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CollisionHandler.cpp$(PreprocessSuffix) "CollisionHandler.cpp"
 
 $(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix): CollisionSphere.cpp $(IntermediateDirectory)/CollisionSphere.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CollisionSphere.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CollisionSphere.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CollisionSphere.cpp$(DependSuffix): CollisionSphere.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CollisionSphere.cpp$(DependSuffix) -MM "CollisionSphere.cpp"
 
@@ -117,7 +117,7 @@ $(IntermediateDirectory)/CollisionSphere.cpp$(PreprocessSuffix): CollisionSphere
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CollisionSphere.cpp$(PreprocessSuffix) "CollisionSphere.cpp"
 
 $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix): Clock.cpp $(IntermediateDirectory)/Clock.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Clock.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Clock.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Clock.cpp$(DependSuffix): Clock.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Clock.cpp$(DependSuffix) -MM "Clock.cpp"
 
@@ -125,7 +125,7 @@ $(IntermediateDirectory)/Clock.cpp$(PreprocessSuffix): Clock.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Clock.cpp$(PreprocessSuffix) "Clock.cpp"
 
 $(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix): Displayer.cpp $(IntermediateDirectory)/Displayer.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Displayer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Displayer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Displayer.cpp$(DependSuffix): Displayer.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Displayer.cpp$(DependSuffix) -MM "Displayer.cpp"
 
@@ -133,7 +133,7 @@ $(IntermediateDirectory)/Displayer.cpp$(PreprocessSuffix): Displayer.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Displayer.cpp$(PreprocessSuffix) "Displayer.cpp"
 
 $(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix): EventHandler.cpp $(IntermediateDirectory)/EventHandler.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/EventHandler.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/EventHandler.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/EventHandler.cpp$(DependSuffix): EventHandler.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/EventHandler.cpp$(DependSuffix) -MM "EventHandler.cpp"
 
@@ -141,7 +141,7 @@ $(IntermediateDirectory)/EventHandler.cpp$(PreprocessSuffix): EventHandler.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/EventHandler.cpp$(PreprocessSuffix) "EventHandler.cpp"
 
 $(IntermediateDirectory)/Game.cpp$(ObjectSuffix): Game.cpp $(IntermediateDirectory)/Game.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Game.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Game.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Game.cpp$(DependSuffix): Game.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Game.cpp$(DependSuffix) -MM "Game.cpp"
 
@@ -149,7 +149,7 @@ $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix): Game.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix) "Game.cpp"
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM "main.cpp"
 
@@ -157,7 +157,7 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
 
 $(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix): Matrix3h.cpp $(IntermediateDirectory)/Matrix3h.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Matrix3h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Matrix3h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Matrix3h.cpp$(DependSuffix): Matrix3h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Matrix3h.cpp$(DependSuffix) -MM "Matrix3h.cpp"
 
@@ -165,7 +165,7 @@ $(IntermediateDirectory)/Matrix3h.cpp$(PreprocessSuffix): Matrix3h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Matrix3h.cpp$(PreprocessSuffix) "Matrix3h.cpp"
 
 $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix): Matrix4h.cpp $(IntermediateDirectory)/Matrix4h.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Matrix4h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Matrix4h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Matrix4h.cpp$(DependSuffix): Matrix4h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Matrix4h.cpp$(DependSuffix) -MM "Matrix4h.cpp"
 
@@ -173,7 +173,7 @@ $(IntermediateDirectory)/Matrix4h.cpp$(PreprocessSuffix): Matrix4h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Matrix4h.cpp$(PreprocessSuffix) "Matrix4h.cpp"
 
 $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix): Quath.cpp $(IntermediateDirectory)/Quath.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Quath.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Quath.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Quath.cpp$(DependSuffix): Quath.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Quath.cpp$(DependSuffix) -MM "Quath.cpp"
 
@@ -181,7 +181,7 @@ $(IntermediateDirectory)/Quath.cpp$(PreprocessSuffix): Quath.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Quath.cpp$(PreprocessSuffix) "Quath.cpp"
 
 $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix): Vector3h.cpp $(IntermediateDirectory)/Vector3h.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Vector3h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Vector3h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Vector3h.cpp$(DependSuffix): Vector3h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Vector3h.cpp$(DependSuffix) -MM "Vector3h.cpp"
 
@@ -189,7 +189,7 @@ $(IntermediateDirectory)/Vector3h.cpp$(PreprocessSuffix): Vector3h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Vector3h.cpp$(PreprocessSuffix) "Vector3h.cpp"
 
 $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix): Vector4h.cpp $(IntermediateDirectory)/Vector4h.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Vector4h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Vector4h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Vector4h.cpp$(DependSuffix): Vector4h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Vector4h.cpp$(DependSuffix) -MM "Vector4h.cpp"
 
@@ -197,7 +197,7 @@ $(IntermediateDirectory)/Vector4h.cpp$(PreprocessSuffix): Vector4h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Vector4h.cpp$(PreprocessSuffix) "Vector4h.cpp"
 
 $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix): CPlane.cpp $(IntermediateDirectory)/CPlane.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CPlane.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CPlane.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CPlane.cpp$(DependSuffix): CPlane.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CPlane.cpp$(DependSuffix) -MM "CPlane.cpp"
 
@@ -205,7 +205,7 @@ $(IntermediateDirectory)/CPlane.cpp$(PreprocessSuffix): CPlane.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CPlane.cpp$(PreprocessSuffix) "CPlane.cpp"
 
 $(IntermediateDirectory)/CRect.cpp$(ObjectSuffix): CRect.cpp $(IntermediateDirectory)/CRect.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CRect.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CRect.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CRect.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CRect.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CRect.cpp$(DependSuffix): CRect.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CRect.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CRect.cpp$(DependSuffix) -MM "CRect.cpp"
 
@@ -213,7 +213,7 @@ $(IntermediateDirectory)/CRect.cpp$(PreprocessSuffix): CRect.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CRect.cpp$(PreprocessSuffix) "CRect.cpp"
 
 $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix): CShape.cpp $(IntermediateDirectory)/CShape.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CShape.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CShape.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CShape.cpp$(DependSuffix): CShape.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CShape.cpp$(DependSuffix) -MM "CShape.cpp"
 
@@ -221,7 +221,7 @@ $(IntermediateDirectory)/CShape.cpp$(PreprocessSuffix): CShape.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CShape.cpp$(PreprocessSuffix) "CShape.cpp"
 
 $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix): CSphere.cpp $(IntermediateDirectory)/CSphere.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CSphere.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CSphere.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CSphere.cpp$(DependSuffix): CSphere.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CSphere.cpp$(DependSuffix) -MM "CSphere.cpp"
 
@@ -229,7 +229,7 @@ $(IntermediateDirectory)/CSphere.cpp$(PreprocessSuffix): CSphere.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CSphere.cpp$(PreprocessSuffix) "CSphere.cpp"
 
 $(IntermediateDirectory)/CLine.cpp$(ObjectSuffix): CLine.cpp $(IntermediateDirectory)/CLine.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/CLine.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CLine.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CLine.cpp$(DependSuffix): CLine.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CLine.cpp$(DependSuffix) -MM "CLine.cpp"
 
@@ -237,7 +237,7 @@ $(IntermediateDirectory)/CLine.cpp$(PreprocessSuffix): CLine.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CLine.cpp$(PreprocessSuffix) "CLine.cpp"
 
 $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix): AABB.cpp $(IntermediateDirectory)/AABB.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/AABB.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/AABB.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/AABB.cpp$(DependSuffix): AABB.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/AABB.cpp$(DependSuffix) -MM "AABB.cpp"
 
@@ -245,7 +245,7 @@ $(IntermediateDirectory)/AABB.cpp$(PreprocessSuffix): AABB.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/AABB.cpp$(PreprocessSuffix) "AABB.cpp"
 
 $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix): BoundingSphere.cpp $(IntermediateDirectory)/BoundingSphere.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/BoundingSphere.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/BoundingSphere.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/BoundingSphere.cpp$(DependSuffix): BoundingSphere.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BoundingSphere.cpp$(DependSuffix) -MM "BoundingSphere.cpp"
 
@@ -253,7 +253,7 @@ $(IntermediateDirectory)/BoundingSphere.cpp$(PreprocessSuffix): BoundingSphere.c
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BoundingSphere.cpp$(PreprocessSuffix) "BoundingSphere.cpp"
 
 $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix): OBB.cpp $(IntermediateDirectory)/OBB.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/OBB.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/OBB.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/OBB.cpp$(DependSuffix): OBB.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/OBB.cpp$(DependSuffix) -MM "OBB.cpp"
 
@@ -261,7 +261,7 @@ $(IntermediateDirectory)/OBB.cpp$(PreprocessSuffix): OBB.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/OBB.cpp$(PreprocessSuffix) "OBB.cpp"
 
 $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix): Rigidbody.cpp $(IntermediateDirectory)/Rigidbody.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/asahan/Documents/Asahan File/hello/grav/party/Rigidbody.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Rigidbody.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Rigidbody.cpp$(DependSuffix): Rigidbody.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Rigidbody.cpp$(DependSuffix) -MM "Rigidbody.cpp"
 

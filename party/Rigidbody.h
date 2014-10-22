@@ -37,7 +37,7 @@ public:
 	inline void SetAngVelocity(Vector3h ang) { AngVelocity = ang; }
 	inline Vector3h GetAngVelocity() { return AngVelocity; }
 	
-	virtual void Render()=0;
+	virtual void Render();
 	//Vector3h GetPosition();
 		
 

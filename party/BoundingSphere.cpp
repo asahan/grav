@@ -35,5 +35,6 @@ bool BoundingSphere::ComputeCollision( const BoundingSphere& other, Vector3h& Co
 		CollisionPoint= (mCenter+CollisionNormal*mRedius)*0.5 + (other.mCenter+CollisionNormal*other.mRedius)*0.5;
 		return true;
 	}
+
 	return false;
 }

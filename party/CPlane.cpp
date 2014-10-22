@@ -3,10 +3,10 @@
 CPlane::CPlane()
 {
 	normal=Vector3h(0,0,1);
-	vertex[0]=Vector3h(1,1,0);
-	vertex[1]=Vector3h(1,-1,0);
-	vertex[2]=Vector3h(-1,1,0);
-	vertex[3]=Vector3h(-1,-1,0);
+	vertex[0]=Vector3h(-10,-10,-10);
+	vertex[1]=Vector3h(-10,10,-10);
+	vertex[2]=Vector3h(10,-10,0);
+	vertex[3]=Vector3h(10,10,0);
 	Center=Vector3h(0,0,0);
 	box.Set(vertex,4);
 }
@@ -19,7 +19,7 @@ void CPlane::Render()
 {	
 	glPushMatrix();
 	glLoadIdentity();
-	gluLookAt(3,3,3,0,0,0,0,0,1);
+	gluLookAt(4,4,4,0,0,0,0,0,1);
 	glColor3f(1,1,0);
 	glBegin(GL_POLYGON);
 	for(int i=0;i<4;i++){

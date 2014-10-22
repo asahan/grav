@@ -24,5 +24,5 @@ void CollisionSphere::operator=(const CollisionSphere& temp )
 
 void CollisionSphere::Render()
 {
-	
+	int i=0;
 }
