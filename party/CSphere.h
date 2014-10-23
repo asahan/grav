@@ -5,17 +5,13 @@
 #include "gl/glut.h"
 class CSphere : public CShape
 {
-public :
-	Vector3h mCenter;
-	float mRedius;
+
 
 public:
 	CSphere();
-	CSphere(Vector3h mCenter,float mRedius);
 	~CSphere();
-	void Set(const CSphere& sphere);
-	void Set(Vector3h mCenter,float mRedius);
-	virtual void Render();
+	
+	void Render(Vector3h pos,float mReidus);
 	
 	
 

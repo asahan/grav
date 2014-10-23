@@ -16,6 +16,10 @@ instGame::instGame()
 	list=new std::vector<CollisionSphere*>();
 	
 	list->push_back(new CollisionSphere(Vector3h(2,2,2),1));
+	list->push_back(new CollisionSphere(Vector3h(4,4,4),1));
+	list->push_back(new CollisionSphere(Vector3h(3,6,6),1));
+	list->push_back(new CollisionSphere(Vector3h(1,3,10),1));
+	
 	
 }
 
@@ -29,7 +33,11 @@ instGame::~instGame()
 	}
 	delete [] list;
 }
-
+void instGame::init()
+{
+	
+	
+}
 void instGame::UpdateObjects( float dt )
 {
 	collisionhandle.Clear();
@@ -76,6 +84,7 @@ void instGame::CollisionDetection()
 			
 					
 		}
+		
 	}
 	 
 }

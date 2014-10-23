@@ -5,16 +5,11 @@
 #include "gl/gl.h"
 class CRect : public CShape
 {
-public:
-	Vector3h min;
-	Vector3h max;
-
 
 public:
 	CRect();
-	CRect(Vector3h min,Vector3h max);
 	~CRect();
-	virtual void Render();
+	virtual void Render(Vector3h min,Vector3h max);
 
 };
 

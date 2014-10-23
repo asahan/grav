@@ -9,12 +9,11 @@
 class CollisionSphere : public Rigidbody
 {
 public:
-	CSphere Sphere;
+	CSphere sphere;
 	BoundingSphere Bounding;
 public:
 	CollisionSphere();
 	~CollisionSphere();
-	CollisionSphere(const CSphere& sphere);
 	CollisionSphere(Vector3h mCenter, float mRedius);
 	void operator=(const CollisionSphere& temp );
 	

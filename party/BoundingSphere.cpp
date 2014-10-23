@@ -4,17 +4,23 @@ BoundingSphere::BoundingSphere()
 {
 }
 BoundingSphere::BoundingSphere(const Vector3h& mCenter,float mRedius):mCenter(mCenter),mRedius(mRedius){};
-BoundingSphere::BoundingSphere(const CSphere& sphere)
+BoundingSphere::BoundingSphere(const BoundingSphere& sphere)
 {
 	Set(sphere);
 }
 BoundingSphere::~BoundingSphere()
 {
 }
-void BoundingSphere::Set(const CSphere& sphere)
+void BoundingSphere::Set(const BoundingSphere& sphere)
 {
 	mCenter=sphere.mCenter;
 	mRedius=sphere.mRedius;
+}
+void BoundingSphere::Set(const Vector3h& mCenter,const float& mReidus)
+{
+	this->mCenter = mCenter;
+	mRedius = mReidus;
+	
 }
 bool BoundingSphere::Intersect( const BoundingSphere& other ) 
 {

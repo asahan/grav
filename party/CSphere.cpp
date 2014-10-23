@@ -2,27 +2,23 @@
 
 CSphere::CSphere()
 {
-	mCenter=Vector3h(0.f,0.f,0.f);
-	mRedius=0;
+	
 }
-CSphere::CSphere(Vector3h mCenter,float mRedius):mCenter(mCenter),mRedius(mRedius){};
 CSphere::~CSphere()
 {
 }
-void CSphere::Set(const CSphere& sphere)
+void CSphere::Render(Vector3h pos,float mRedius)
 {
-	mCenter=sphere.mCenter;
-	mRedius=sphere.mRedius;
+	glPushMatrix();
+		glLoadIdentity();
+		gluLookAt(20,10,10,0,0,0,0,0,1);
+		glColor3f(0.5,0.1,0);
+		glTranslatef(pos.x,pos.y,pos.z);
+		glutSolidSphere( mRedius, 24, 12 );
+	glPopMatrix();
+	glFlush();
 	
-}
-void CSphere::Set(Vector3h mCenter,float mRedius)
-{
-	this->mCenter = mCenter;
-	this->mRedius = mRedius;
-}
-void CSphere::Render()
-{
-	 glutSolidSphere( mRedius, 24, 12 );
+	 
 }
 
 

@@ -7,22 +7,18 @@ CollisionSphere::CollisionSphere()
 CollisionSphere::~CollisionSphere()
 {
 }
-CollisionSphere::CollisionSphere(const CSphere& sphere)
-{
-	Sphere.Set(sphere);
-	Bounding.Set(sphere);
-}
 CollisionSphere::CollisionSphere(Vector3h mCenter, float mRedius)
 {
-	Sphere.Set(mCenter,mRedius);
-	Bounding.Set(Sphere);
+	Bounding.Set(mCenter,mRedius);
+	this->SetPosition(mCenter);
 }
 void CollisionSphere::operator=(const CollisionSphere& temp )
 {
-	Sphere.Set(temp.Sphere);
+	Bounding.Set(temp.Bounding);
+	this->SetPosition(Bounding.mCenter);
 }
 
 void CollisionSphere::Render()
 {
-	int i=0;
+	sphere.Render(Bounding.mCenter,Bounding.mRedius);
 }

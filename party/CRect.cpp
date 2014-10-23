@@ -2,14 +2,11 @@
 
 CRect::CRect()
 {
-	min=Vector3h(0,0,0);
-	max=Vector3h(0,0,0);
 }
-CRect::CRect(Vector3h min,Vector3h max):min(min),max(max){};
 CRect::~CRect()
 {
 }
-void CRect::Render()
+void CRect::Render(Vector3h min,Vector3h max)
 {
 	glBegin(GL_QUADS);
 

@@ -11,9 +11,10 @@ public:
 public:
 	BoundingSphere();
 	BoundingSphere(const Vector3h& mCenter,float mRedius);
-	BoundingSphere(const CSphere& sphere);
+	BoundingSphere(const BoundingSphere& sphere);
 	~BoundingSphere();
-	void Set(const CSphere& sphere);
+	void Set(const Vector3h& mCenter,const float& mReidus);
+	void Set(const BoundingSphere& sphere);
 	bool Intersect( const BoundingSphere& other );
 	bool ComputeCollision( const BoundingSphere& other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollistionPoint) const;
 	

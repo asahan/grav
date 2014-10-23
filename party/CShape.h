@@ -9,7 +9,7 @@ public:
 	CShape();
 	~CShape();
 	
-	virtual void Render()=0;
+	
 
 };
 

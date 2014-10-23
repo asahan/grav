@@ -6,16 +6,14 @@
 class CLine : public CShape
 {
 public:
-	Vector3h mOrigin;
-	Vector3h mDirection;
+	
 	
 	
 public:
-	CLine(Vector3h Origin,Vector3h endpoint);
 	CLine();
 	~CLine();
 	virtual void Render();
-	void Set(Vector3h a[2]);
+	
 	
 
 };

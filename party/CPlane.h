@@ -10,7 +10,7 @@ class CPlane : public CShape
 public:
 	Vector3h Center;
 	Vector3h normal;
-	Vector3h vertex[4];
+	Vector3h vertex[8];
 	AABB box;
 public:
 	CPlane();

@@ -20,7 +20,7 @@ public:
 public:
 	instGame();
 	~instGame();
-	void initialize();
+	void init();
 	void CollisionDetection();
 	virtual void UpdateObjects( float dt );
     virtual void Render();
