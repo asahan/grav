@@ -19,6 +19,17 @@ instGame::instGame()
 	list->push_back(new CollisionSphere(Vector3h(4,4,4),1));
 	list->push_back(new CollisionSphere(Vector3h(3,6,6),1));
 	list->push_back(new CollisionSphere(Vector3h(1,3,10),1));
+	float Color[12]={0.5,0.3,0,0.5,0.5,0.3,0.7,0.2,0.5,0.6,0.1,0.9};
+	vector<CollisionSphere*>::iterator it;
+	int index=0;
+	for(it=list->begin();it!=list->end();it++)
+	{
+		(*it)->SetGravity(Vector3h(0,0,-9.8));
+		(*it)->SetElasticity(1.);
+		(*it)->SetMass(5.);
+		(*it)->SetColor(Color[index],Color[index+1],Color[index+2]);
+		index+=3;
+	}
 	
 	
 }
@@ -33,11 +44,7 @@ instGame::~instGame()
 	}
 	delete [] list;
 }
-void instGame::init()
-{
-	
-	
-}
+
 void instGame::UpdateObjects( float dt )
 {
 	collisionhandle.Clear();
@@ -65,7 +72,6 @@ void instGame::CollisionDetection()
 	for(first=list->begin();first!=list->end();first++)
 	{
 		for(second=first;second!=list->end();second++)
-		{
 			if(second != first)
 			{
 				Vector3h collnormal,collpoint;
@@ -83,8 +89,6 @@ void instGame::CollisionDetection()
 			}
 			
 					
-		}
-		
 	}
 	 
 }

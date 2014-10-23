@@ -15,6 +15,8 @@ public:
 	~BoundingSphere();
 	void Set(const Vector3h& mCenter,const float& mReidus);
 	void Set(const BoundingSphere& sphere);
+	inline void SetRedius(float redius) { mRedius = redius; }; 
+	inline void SetCenter(Vector3h center){mCenter = center;};
 	bool Intersect( const BoundingSphere& other );
 	bool ComputeCollision( const BoundingSphere& other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollistionPoint) const;
 	

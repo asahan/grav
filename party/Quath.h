@@ -8,6 +8,7 @@ class Quath
 public:
 	Quath();
 	Quath(float w,float x,float y,float z);
+	Quath(const Vector3h& vec);
 	~Quath();
 	void Set(float w,float x,float y,float z);
 	void Set(const Vector3h axis,float angle);

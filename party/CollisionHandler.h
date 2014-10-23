@@ -13,16 +13,16 @@ struct Contact
 	Vector3h Normal;
 	float penetration;
 };
-struct CollisionPoints
+struct CollisionPoint
 {
 	CollisionSphere *Sphere0;
 	CollisionSphere *Sphere1;
-	vector<Contact> contacts;
+	Contact contact;
 };
 class CollisionHandler
 {
 	
-	vector<CollisionPoints*> *Collisions;
+	vector<CollisionPoint*> *Collisions;
 public:
 	
 	CollisionHandler();

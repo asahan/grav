@@ -20,5 +20,6 @@ void CollisionSphere::operator=(const CollisionSphere& temp )
 
 void CollisionSphere::Render()
 {
+	Bounding.SetCenter(this->Translate);
 	sphere.Render(Bounding.mCenter,Bounding.mRedius);
 }

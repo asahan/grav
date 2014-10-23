@@ -52,14 +52,14 @@
     <VirtualDirectory Name="graphic">
       <File Name="CPlane.h"/>
       <File Name="CPlane.cpp"/>
-      <File Name="CRect.cpp"/>
-      <File Name="CRect.h"/>
       <File Name="CShape.cpp"/>
       <File Name="CShape.h"/>
       <File Name="CSphere.cpp"/>
       <File Name="CSphere.h"/>
       <File Name="CLine.cpp"/>
       <File Name="CLine.h"/>
+      <File Name="CCube.h"/>
+      <File Name="CCube.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="collision">
       <File Name="AABB.cpp"/>

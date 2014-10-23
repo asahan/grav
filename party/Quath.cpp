@@ -14,6 +14,10 @@ Quath::~Quath()
 Quath::Quath(float w,float x,float y,float z):w(w),x(x),y(y),z(z)
 {
 };
+Quath::Quath(const Vector3h& vec)
+{
+	Set(0,vec.x,vec.y,vec.z);
+}
 void Quath::Set(float w,float x,float y,float z)
 {
 	this->w=w,this->x=x,this->y=y,this->z=z;
