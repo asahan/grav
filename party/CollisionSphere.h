@@ -17,6 +17,9 @@ public:
 	CollisionSphere(Vector3h mCenter, float mRedius);
 	inline void SetColor(float r,float g,float b) { sphere.SetColor(r,g,b); };
 	void operator=(const CollisionSphere& temp );
+	void operator=(const CollisionSphere* temp);
+	bool HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint);
+	void Applyimpulse();
 	
 	virtual void Render();
 };

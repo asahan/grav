@@ -25,7 +25,7 @@ instGame::instGame()
 	for(it=list->begin();it!=list->end();it++)
 	{
 		(*it)->SetGravity(Vector3h(0,0,-9.8));
-		(*it)->SetElasticity(1.);
+		(*it)->SetElasticity(0.5);
 		(*it)->SetMass(5.);
 		(*it)->SetColor(Color[index],Color[index+1],Color[index+2]);
 		index+=3;
@@ -49,6 +49,7 @@ void instGame::UpdateObjects( float dt )
 {
 	collisionhandle.Clear();
 	CollisionDetection();
+	CollisionResponse();
 	vector<CollisionSphere*>::iterator it;
 	for(it=list->begin();it!=list->end();it++)
 	{
@@ -72,13 +73,9 @@ void instGame::CollisionDetection()
 	{
 		Vector3h collnormal,collpoint;
 		float pen;
-		if(plain.box.ComputeCollision((*first)->Bounding,collnormal,pen,collpoint) == true)
+		if(plain.HandleCollision((*first),collnormal,pen,collpoint) == true)
 		{
 			collisionhandle.AddCollision((*first),collpoint,pen,collnormal);
-			Vector3h pos = (*first)->GetPosition();
-			pos+=collnormal*pen;
-			(*first)->SetPosition(pos);
-			
 		}
 	}
 	vector<CollisionSphere*>::iterator second;
@@ -89,19 +86,18 @@ void instGame::CollisionDetection()
 			{
 				Vector3h collnormal,collpoint;
 				float pen;
-				if(((*first)->Bounding.ComputeCollision((*second)->Bounding,collnormal,pen,collpoint)) == true)
+				if(((*first)->HandleCollision((*second),collnormal,pen,collpoint)) == true)
 				{
 					collisionhandle.AddCollision((*first),(*second),collpoint,pen,collnormal);
-					Vector3h firstpos=(*first)->GetPosition();
-					firstpos-=collnormal*0.5*pen;
-					(*first)->SetPosition(firstpos);
-					Vector3h secondpos=(*second)->GetPosition();
-					secondpos+=collnormal*0.5*pen;
-					(*second)->SetPosition(secondpos);
+					
 				}
 			}
 			
 					
 	}
 	 
+}
+void instGame::CollisionResponse()
+{
+	collisionhandle.Response();
 }

@@ -33,12 +33,12 @@ public:
 	inline Vector3h GetVelocity() { return Velocity; }
 	inline void SetGravity(Vector3h grav) { Gravity =  grav; }
 	inline void SetElasticity(float e) { Elasticity =e; }
-	
+	inline float GetElastictity() { return Elasticity;}
 	inline void SetAngVelocity(Vector3h ang) { AngVelocity = ang; }
 	inline Vector3h GetAngVelocity() { return AngVelocity; }
 	
-	virtual void Render();
-	//Vector3h GetPosition();
+	
+	
 		
 
 };

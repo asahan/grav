@@ -36,6 +36,7 @@ public:
 	void Clear();
 	void AddCollision(CollisionSphere *sp0,CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal);
 	void AddCollision(CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal);
+	void Response();
 
 };
 

@@ -7,15 +7,12 @@
 
 class CPlane : public CShape
 {
-public:
-	Vector3h Center;
-	Vector3h normal;
-	Vector3h vertex[8];
-	AABB box;
+
+
 public:
 	CPlane();
 	~CPlane();
-	virtual void Render();
+	virtual void Render(Vector3h vertex[4]);
 
 };
 

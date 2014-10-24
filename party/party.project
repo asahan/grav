@@ -71,6 +71,8 @@
       <File Name="Rigidbody.cpp"/>
       <File Name="Rigidbody.h"/>
     </VirtualDirectory>
+    <File Name="CollisionPlane.h"/>
+    <File Name="CollisionPlane.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

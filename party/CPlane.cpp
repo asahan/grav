@@ -2,24 +2,14 @@
 #include "gl/gl.h"
 CPlane::CPlane()
 {
-	normal=Vector3h(0,0,1);
-	vertex[0]=Vector3h(-10,-10,0);
-	vertex[1]=Vector3h(10,-10,0);
-	vertex[2]=Vector3h(10,10,0);
-	vertex[3]=Vector3h(-10,10,0);
-	vertex[4]=Vector3h(-10,10,-10);
-	vertex[5]=Vector3h(-10,10,-10);
-	vertex[6]=Vector3h(-10,10,-10);
-	vertex[7]=Vector3h(-10,10,-10);
-	Center=Vector3h(0,0,0);
-	box.Set(vertex,8);
+	
 }
 
 CPlane::~CPlane()
 {
 }
 
-void CPlane::Render()
+void CPlane::Render(Vector3h vertex[4])
 {	
 	glPushMatrix();
 	glLoadIdentity();
