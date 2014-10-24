@@ -68,6 +68,19 @@ void instGame::Render()
 void instGame::CollisionDetection()
 {
 	vector<CollisionSphere*>::iterator first;
+	for(first=list->begin();first!=list->end();first++)
+	{
+		Vector3h collnormal,collpoint;
+		float pen;
+		if(plain.box.ComputeCollision((*first)->Bounding,collnormal,pen,collpoint) == true)
+		{
+			collisionhandle.AddCollision((*first),collpoint,pen,collnormal);
+			Vector3h pos = (*first)->GetPosition();
+			pos+=collnormal*pen;
+			(*first)->SetPosition(pos);
+			
+		}
+	}
 	vector<CollisionSphere*>::iterator second;
 	for(first=list->begin();first!=list->end();first++)
 	{

@@ -1,6 +1,7 @@
 #ifndef COLLISIONHANDLER_H
 #define COLLISIONHANDLER_H
 #include "CollisionSphere.h"
+#include "CPlane.h"
 #include "Vector3h.h"
 #include <vector>
 using namespace std;
@@ -19,9 +20,14 @@ struct CollisionPoint
 	CollisionSphere *Sphere1;
 	Contact contact;
 };
+struct CollisionSpherePlane
+{
+	CollisionSphere *Sphere0;
+	Contact contact;
+};
 class CollisionHandler
 {
-	
+	vector<CollisionSpherePlane*> *Coll;
 	vector<CollisionPoint*> *Collisions;
 public:
 	
@@ -29,6 +35,7 @@ public:
 	~CollisionHandler();
 	void Clear();
 	void AddCollision(CollisionSphere *sp0,CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal);
+	void AddCollision(CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal);
 
 };
 

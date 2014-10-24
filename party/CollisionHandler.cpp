@@ -2,6 +2,7 @@
 
 CollisionHandler::CollisionHandler()
 {
+	this->Coll=new std::vector<CollisionSpherePlane*>;
 	this->Collisions = new std::vector<CollisionPoint*>;
 }
 
@@ -45,4 +46,12 @@ void CollisionHandler::AddCollision(CollisionSphere *sp0,CollisionSphere *sp1, V
 		nCollision->contact=intemp;
 		Collisions->push_back(nCollision);
 	//}
+}
+void CollisionHandler::AddCollision(CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal)
+{
+	CollisionSpherePlane* nCollision = new CollisionSpherePlane();
+	nCollision->Sphere0 = sp1;
+	Contact intemp = {Vector3h(0,0,0),sp1->Translate,point,normal,penetration};
+	nCollision->contact = intemp;
+	this->Coll->push_back(nCollision);
 }
