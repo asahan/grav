@@ -23,11 +23,20 @@ void Rigidbody::Update(float dt)
 	//yn+1 = yn + h/6(k1 + 2*k2 + 2*k3 + k4)
 	float h=dt;
 	Vector3h vec = Velocity + Gravity*h;
-	Vector3h pos = Translate + vec*h;
+	pos = pos + vec*h;
 	
-	SetPosition(pos);
+	
 	SetVelocity(vec);
 	
 	
 	
+}
+Matrix3h Rigidbody::GetLocalInertia()
+{
+	return MomentInverse;
+}
+Matrix3h Rigidbody::GetWorldInertia()
+{
+	Matrix3h a=Inverse(rot);
+	return a;
 }

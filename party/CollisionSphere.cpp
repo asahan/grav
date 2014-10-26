@@ -42,6 +42,6 @@ void CollisionSphere::Applyimpulse()
 }
 void CollisionSphere::Render()
 {
-	Bounding.SetCenter(this->Translate);
+	Bounding.SetCenter(this->pos);
 	sphere.Render(Bounding.mCenter,Bounding.mRedius);
 }

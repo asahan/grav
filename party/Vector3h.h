@@ -21,6 +21,7 @@ public:
 	float Size();
 	void normalize();
 	Vector3h Cross(const Vector3h& a);
+	float Dot(const Vector3h a);
 	
 	void operator+=(const Vector3h& a);
 	Vector3h operator+(const Vector3h& a) const;

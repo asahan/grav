@@ -7,7 +7,7 @@ OBB::OBB()
 	this->Extent [1] =1;
 	this->Extent [2]=1;
 	
-	this->Axis[0]= Vector3h (1,0,0);
+	this->Axis[0]=Vector3h (1,0,0);
 	this->Axis[1]=Vector3h (0,1,0);
 	this->Axis[2]=Vector3h (0,0,1);
 }
@@ -47,19 +47,77 @@ OBB::OBB(const OBB& other)
 	}
 	
 }
-bool OBB::SpanIntersect(OBB& a,Vector3h axis,float& penentration,Vector3h& minaxis)
+bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& minaxis)
 {
-	bool h=false;
-	return h;
+	
+	float min=99999,max=-99999;;
+	float othermin=99999,othermax=-99999;
+
+	for(int i=0;i<8;i++)
+	{
+		Vector3h ver=GetVertex(i);
+		float temp = ver*axis;
+		
+		if(temp < min)
+			min = temp;
+		else if(temp > max)
+			max = temp;
+			
+		Vector3h otherver=other.GetVertex(i);
+		float othertemp = otherver*axis;
+		if(othertemp < othermin)
+			othermin = othertemp;
+		else if(othertemp > othermax)
+			othermax = othertemp;
+	}
+	
+	float length = max - min;
+	float otherlength = othermax - othermin;
+	float sum = length + otherlength;
+	
+	float minimum = (min>othermin) ? othermin:min ;
+	float maximum = (max>othermax) ? max:othermax ;
+	float len = maximum - minimum;
+	
+	if(len > sum)
+		return false;
+	
+	
+	float pene = sum - len;
+	if(pene < penetration)
+	{
+			minaxis = axis;
+			penetration = pene;
+	}
+	return true;
+	
 }
 bool OBB::Intersect(OBB& other)
 {
-	bool hit=false;
-	float minpenentration=0.01f;
+	bool hit=true;
+	float minpenentration=10000.f;
 	Vector3h minAxis;
 	hit&=SpanIntersect(other,Axis[0],minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[1],minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[2],minpenentration,minAxis);
+	hit&=SpanIntersect(other,other.Axis[0],minpenentration,minAxis);
+	hit&=SpanIntersect(other,other.Axis[1],minpenentration,minAxis);
+	hit&=SpanIntersect(other,other.Axis[2],minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[0].Cross(other.Axis[0]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[0].Cross(other.Axis[1]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[0].Cross(other.Axis[2]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[1].Cross(other.Axis[0]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[1].Cross(other.Axis[1]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[1].Cross(other.Axis[2]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[2].Cross(other.Axis[0]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[2].Cross(other.Axis[1]),minpenentration,minAxis);
+	hit&=SpanIntersect(other,Axis[2].Cross(other.Axis[2]),minpenentration,minAxis);
 	
 	return hit;
+}
+bool Intersect(BoundingSphere& other)
+{
+	return false;
 }
 Vector3h OBB::GetVertex(int i)
 {

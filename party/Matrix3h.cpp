@@ -21,6 +21,44 @@ Matrix3h::~Matrix3h()
 {
 }
 
+Matrix3h Inverse(const Matrix3h a)
+{
+	Matrix3h ret;
+	
+	float cof0 = a.index[4]*a.index[8] - a.index[5]*a.index[7];
+	float cof1 = a.index[1]*a.index[8] - a.index[2]*a.index[7];
+	float cof2 = a.index[1]*a.index[5] - a.index[2]*a.index[4];
+	float det = a.index[0]*cof0 - a.index[3]*cof1 + a.index[6]*cof2;
+	if(det == 0)
+		return ret;
+	float invdet = 1/det;
+	
+	ret.index[0] = invdet * cof0;
+	ret.index[1] = invdet * (-cof1);
+	ret.index[2] = invdet * cof2;
+	
+	ret.index[3] = invdet*-(a.index[3]*a.index[8] - a.index[5]*a.index[6]);
+	ret.index[4] = invdet*(a.index[0]*a.index[8] - a.index[2]*a.index[6]);
+	ret.index[5] = invdet*-(a.index[0]*a.index[5] - a.index[2]*a.index[3]);
+	
+	ret.index[6] = invdet*(a.index[3]*a.index[7] - a.index[4]*a.index[6]);
+	ret.index[7] = invdet*-(a.index[0]*a.index[7] - a.index[1]*a.index[6]);
+	ret.index[8] = invdet*(a.index[0]*a.index[4] - a.index[1]*a.index[3]);
+	
+	
+	return ret;
+}
+void Matrix3h::Identity()
+{
+	for(int i=0;i<9;i++)
+		this->index[i]=0;
+	index[0]=index[4]=index[8]=1;
+}
+void Matrix3h::operator=(const Matrix3h& a)
+{
+	for(int i=0;i<9;i++)
+		index[i]=a.index[i];
+}
 Vector3h Matrix3h::operator*(const Vector3h& a)
 {
 	Vector3h result(index[0]*a.x+index[3]*a.y+index[6]*a.z,

@@ -2,11 +2,14 @@
 #define OBB_H
 #include "Vector3h.h"
 #include "Matrix3h.h"
+#include "BoundingSphere.h"
 class OBB
 {
 	Vector3h Center;
+	Matrix3h Rotation;
 	Vector3h Axis[3];
 	float Extent[3];
+	
 public:
 	OBB();
 	OBB(const Vector3h Center,const Vector3h Axis[3],const float Extent[3]);
@@ -16,6 +19,7 @@ public:
 	
 	bool SpanIntersect(OBB& a,Vector3h axis,float& penentration,Vector3h& minaxis);
 	bool Intersect(OBB& other);
+	bool Intersect(BoundingSphere& other);
 	Vector3h GetVertex(int i);
 
 };

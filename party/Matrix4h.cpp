@@ -21,7 +21,69 @@ Matrix4h::Matrix4h()
 Matrix4h::~Matrix4h()
 {
 }
-
+void Matrix4h::Set(const Matrix3h a)
+{
+	index[0]=a.index[0];
+	index[1]=a.index[1];
+	index[2]=a.index[2];
+	index[3]=0;
+	index[4]=a.index[3];
+	index[5]=a.index[4];
+	index[6]=a.index[5];
+	index[7]=0;
+	index[8]=a.index[6];
+	index[9]=a.index[7];
+	index[10]=a.index[8];
+	index[11]=0;
+	index[12]=0;
+	index[13]=0;
+	index[14]=0;
+	index[15]=1;
+}
+void Matrix4h::SetRow(unsigned int i,const Vector4h& a)
+{
+	if(i >3)
+		return;
+	switch(i){
+		case 0:
+		index[0]=a.w, index[4]=a.x, index[8]=a.y, index[12]=a.z;
+		break;
+		case 1:
+		index[1]=a.w, index[5]=a.x, index[9]=a.y, index[13]=a.z;
+		break;
+		case 2:
+		index[2]=a.w, index[6]=a.x, index[10]=a.y, index[14]=a.z;
+		break;
+		case 3:
+		index[3]=a.w, index[7]=a.x, index[11]=a.y, index[15]=a.z;
+		break;
+	}
+}
+void Matrix4h::SetCuloumn(unsigned int i,const Vector4h& a)
+{
+	if(i >3)
+		return;
+	switch(i){
+		case 0:
+		index[0]=a.w, index[1]=a.x, index[2]=a.y, index[3]=a.z;
+		break;
+		case 1:
+		index[4]=a.w, index[5]=a.x, index[6]=a.y, index[7]=a.z;
+		break;
+		case 2:
+		index[8]=a.w, index[9]=a.x, index[10]=a.y, index[11]=a.z;
+		break;
+		case 3:
+		index[12]=a.w, index[13]=a.x, index[14]=a.y, index[15]=a.z;
+		break;
+	}
+}
+	
+void Matrix4h::operator=(const Matrix4h& a)
+{
+	for(int i=0;i<16;i++)
+		index[i]=a.index[i];
+}
 Vector4h Matrix4h::operator*(const Vector4h& a)
 {
 	GLfloat temp[4]={0,};

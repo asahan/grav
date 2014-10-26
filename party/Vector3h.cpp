@@ -66,6 +66,10 @@ Vector3h Vector3h::Cross(const Vector3h& a)
 	Vector3h b(y*a.z-z*a.y,z*a.x-x*a.z,x*a.y-y*a.x);
 	return b;
 }
+float Vector3h::Dot(const Vector3h a)
+{
+	return x*a.x+y*a.y+z*a.z;
+}
 void Vector3h::operator+=(const Vector3h& a)
 {
 	x+=a.x,y+=a.y,z+=a.z;

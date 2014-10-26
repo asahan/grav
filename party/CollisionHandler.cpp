@@ -49,7 +49,7 @@ void CollisionHandler::AddCollision(CollisionSphere *sp0,CollisionSphere *sp1, V
 		CollisionPoint* nCollision = new CollisionPoint();
 		nCollision->Sphere0 = sp0;
 		nCollision->Sphere1 = sp1;
-		Contact intemp={sp0->Translate,sp1->Translate,point,normal,penetration};
+		Contact intemp={sp0->pos,sp1->pos,point,normal,penetration};
 		nCollision->contact=intemp;
 		Collisions->push_back(nCollision);
 	//}
@@ -58,7 +58,7 @@ void CollisionHandler::AddCollision(CollisionSphere *sp1,Vector3h point, float p
 {
 	CollisionSpherePlane* nCollision = new CollisionSpherePlane();
 	nCollision->Sphere0 = sp1;
-	Contact intemp = {Vector3h(0,0,0),sp1->Translate,point,normal,penetration};
+	Contact intemp = {Vector3h(0,0,0),sp1->pos,point,normal,penetration};
 	nCollision->contact = intemp;
 	this->Coll->push_back(nCollision);
 }

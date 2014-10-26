@@ -7,13 +7,15 @@ class Rigidbody
 {
 public:
 	float       mMass;
-	Vector3h Translate;
+	Vector3h pos;
 	Vector3h Velocity;
 	Vector3h Gravity;
 	Vector3h Force;
 	
+	Matrix3h rot;
 	Matrix3h MomentInverse;
 	Matrix3h WorldMomentInverse;
+	
 	
 	Vector3h AngVelocity;
 	Vector3h Angmoment;
@@ -23,8 +25,8 @@ public:
 public:
 	Rigidbody();
 	~Rigidbody();
-	inline void SetPosition( const Vector3h pos) { Translate = pos; }
-	inline Vector3h GetPosition() { return Translate; }
+	inline void SetPosition( const Vector3h pos) { this->pos = pos; }
+	inline Vector3h GetPosition() { return pos; }
 	inline void SetMass(float mass) { mMass = mass; }
 	inline float GetMass() { return mMass; }
 	inline float GetInvMass() { return 1/mMass; }
@@ -36,10 +38,9 @@ public:
 	inline float GetElastictity() { return Elasticity;}
 	inline void SetAngVelocity(Vector3h ang) { AngVelocity = ang; }
 	inline Vector3h GetAngVelocity() { return AngVelocity; }
+	Matrix3h GetLocalInertia();
+	Matrix3h GetWorldInertia();
 	
-	
-	
-		
 
 };
 

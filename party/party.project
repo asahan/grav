@@ -73,6 +73,8 @@
     </VirtualDirectory>
     <File Name="CollisionPlane.h"/>
     <File Name="CollisionPlane.cpp"/>
+    <File Name="CollisionCube.h"/>
+    <File Name="CollisionCube.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
