@@ -6,7 +6,6 @@
 class OBB
 {
 	Vector3h Center;
-	Matrix3h Rotation;
 	Vector3h Axis[3];
 	float Extent[3];
 	
@@ -18,10 +17,11 @@ public:
 	~OBB();
 	
 	bool SpanIntersect(OBB& a,Vector3h axis,float& penentration,Vector3h& minaxis);
-	bool Intersect(OBB& other);
+	bool Intersect(OBB& other,float& minpen,Vector3h& axis);
 	bool Intersect(BoundingSphere& other);
 	Vector3h GetVertex(int i);
-
+	int GetNumHitPoints(const Vector3h& normal,const float& penetration,Vector3h* vertex,int* vertindex);
+	bool ComputeCollision( OBB& other, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numhitpoint) ;
 };
 
 #endif // OBB_H

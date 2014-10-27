@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=10/27/14
+Date                   :=10/28/14
 CodeLitePath           :="C:\Program Files\CodeLite"
 LinkerName             :=C:\MinGW-4.8.1\bin\g++.exe 
 SharedObjectLinkerName :=C:\MinGW-4.8.1\bin\g++.exe -shared -fPIC
@@ -64,8 +64,8 @@ AS       := C:\MinGW-4.8.1\bin\as.exe
 CodeLiteDir:=C:\Program Files\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
 Objects0=$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IntermediateDirectory)/CCube.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/CCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) 
 
 
 
@@ -212,6 +212,14 @@ $(IntermediateDirectory)/Vector4h.cpp$(DependSuffix): Vector4h.cpp
 $(IntermediateDirectory)/Vector4h.cpp$(PreprocessSuffix): Vector4h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Vector4h.cpp$(PreprocessSuffix) "Vector4h.cpp"
 
+$(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix): Line3h.cpp $(IntermediateDirectory)/Line3h.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Line3h.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Line3h.cpp$(DependSuffix): Line3h.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Line3h.cpp$(DependSuffix) -MM "Line3h.cpp"
+
+$(IntermediateDirectory)/Line3h.cpp$(PreprocessSuffix): Line3h.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Line3h.cpp$(PreprocessSuffix) "Line3h.cpp"
+
 $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix): CPlane.cpp $(IntermediateDirectory)/CPlane.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CPlane.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CPlane.cpp$(DependSuffix): CPlane.cpp
@@ -335,6 +343,9 @@ clean:
 	$(RM) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/Vector4h.cpp$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/Vector4h.cpp$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/Line3h.cpp$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/Line3h.cpp$(PreprocessSuffix)
 	$(RM) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/CPlane.cpp$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/CPlane.cpp$(PreprocessSuffix)

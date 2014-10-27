@@ -92,30 +92,38 @@ bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& mi
 	return true;
 	
 }
-bool OBB::Intersect(OBB& other)
+bool OBB::Intersect(OBB& other,float& minpen,Vector3h& axis)
 {
-	bool hit=true;
+	
 	float minpenentration=10000.f;
 	Vector3h minAxis;
-	hit&=SpanIntersect(other,Axis[0],minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[1],minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[2],minpenentration,minAxis);
-	hit&=SpanIntersect(other,other.Axis[0],minpenentration,minAxis);
-	hit&=SpanIntersect(other,other.Axis[1],minpenentration,minAxis);
-	hit&=SpanIntersect(other,other.Axis[2],minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[0].Cross(other.Axis[0]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[0].Cross(other.Axis[1]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[0].Cross(other.Axis[2]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[1].Cross(other.Axis[0]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[1].Cross(other.Axis[1]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[1].Cross(other.Axis[2]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[2].Cross(other.Axis[0]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[2].Cross(other.Axis[1]),minpenentration,minAxis);
-	hit&=SpanIntersect(other,Axis[2].Cross(other.Axis[2]),minpenentration,minAxis);
+	Vector3h seperatingAxis[15];
+	seperatingAxis[0]=Axis[0];
+	seperatingAxis[1]=Axis[1];
+	seperatingAxis[2]=Axis[2];
+	seperatingAxis[3]=other.Axis[0];
+	seperatingAxis[4]=other.Axis[1];
+	seperatingAxis[5]=other.Axis[2];
+	seperatingAxis[6]=Axis[0].Cross(other.Axis[0]);
+	seperatingAxis[7]=Axis[0].Cross(other.Axis[1]);
+	seperatingAxis[8]=Axis[0].Cross(other.Axis[2]);
+	seperatingAxis[9]=Axis[1].Cross(other.Axis[0]);
+	seperatingAxis[10]=Axis[1].Cross(other.Axis[1]);
+	seperatingAxis[11]=Axis[1].Cross(other.Axis[2]);
+	seperatingAxis[12]=Axis[2].Cross(other.Axis[0]);
+	seperatingAxis[13]=Axis[2].Cross(other.Axis[1]);
+	seperatingAxis[14]=Axis[2].Cross(other.Axis[2]);
+	for(int i=0;i<15;i++)
+	{
+		if(!SpanIntersect(other,seperatingAxis[i],minpenentration,minAxis))
+			return false;
+	}
 	
-	return hit;
+	minpen = minpenentration;
+	axis = minAxis;
+	return true;
 }
-bool Intersect(BoundingSphere& other)
+bool OBB::Intersect(BoundingSphere& other)
 {
 	return false;
 }
@@ -151,4 +159,99 @@ Vector3h OBB::GetVertex(int i)
 		;
 	}
 	return ret;
+}
+int OBB::GetNumHitPoints(const Vector3h& normal,const float& penetration,Vector3h* vertex,int* vertindex)
+{
+	float max = GetVertex(0)*normal;
+	Vector3h maxvec = GetVertex(0);
+	for(int i=0;i<8;i++)
+	{
+		float temp = GetVertex(i)*normal;
+		if(temp > max)
+		{
+			max = temp;
+		}
+	}
+	
+	float d = max - penetration + 0.01;
+	int numHits=0;
+	for(int i=0;i<8;i++)
+	{
+		Vector3h ver = GetVertex(i);
+		float temp = ver*normal;
+		if(temp > d)
+		{
+			vertex[numHits]=ver;
+			max = temp;
+			vertindex[numHits]=i;
+			numHits++;
+		}
+	}
+	
+	return numHits;
+}
+bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numhitpoint) 
+{
+	
+	bool ret=false;
+	Vector3h normal;
+	float minpenetration;
+	ret=Intersect(other,minpenetration,normal);
+	if(!ret)
+		return false;
+	Vector3h vertex0[8];
+	int vert0=0;
+	int vert0index[8]={-1,};
+	vert0 = GetNumHitPoints(normal,minpenetration,vertex0,vert0index);
+	Vector3h vertex1[8];
+	int vert1=0;
+	int vert1index[8]={-1,};
+	Vector3h norm= normal * -1;
+	vert1 = other.GetNumHitPoints(norm,minpenetration,vertex1,vert1index);
+	if(vert0 == 0 || vert1==0)
+		return false;
+	
+	penetration = minpenetration;
+	CollisionNormal = normal;
+	if((vert0 == 4 && vert1==2 ) || (vert0 == 2 && vert1==4 ))
+	{
+		numhitpoint=2;
+		Vector3h point0;
+		Vector3h point1;
+		if(vert0 == 4)
+		{
+			point0=other.GetVertex(vert1index[0]);
+			point1=other.GetVertex(vert1index[1]);
+		}
+		else
+		{
+			Vector3h point0=GetVertex(vert0index[0]);
+			Vector3h point1=GetVertex(vert0index[1]);
+		}
+		point0 += CollisionNormal*0.5*penetration;
+		point1 += CollisionNormal*0.5*penetration;
+		CollisionPoint[0]=point0;
+		CollisionPoint[1]=point1;
+		return true;
+		
+	}
+	else if((vert0 == 4 && vert1==1 ) || (vert0 == 1 && vert1==4 ))
+	{
+		numhitpoint=1;
+		Vector3h point;
+		if(vert0 == 4)
+			point=other.GetVertex(vert1index[0]);
+		else
+			point=GetVertex(vert0index[0]);
+		point += CollisionNormal*0.5*penetration;
+		CollisionPoint[0]=point;
+		return true;
+	}
+	else if(vert0 == 2 && vert1==2)
+	{
+		numhitpoint=1;
+		Vector3h point;
+	}
+	
+	
 }
