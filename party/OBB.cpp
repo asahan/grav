@@ -1,5 +1,6 @@
 #include "OBB.h"
 #include "math.h"
+#include "Line3h.h"
 OBB::OBB()
 {
 	this->Center = Vector3h (0,0,0);
@@ -228,8 +229,7 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 			Vector3h point0=GetVertex(vert0index[0]);
 			Vector3h point1=GetVertex(vert0index[1]);
 		}
-		point0 += CollisionNormal*0.5*penetration;
-		point1 += CollisionNormal*0.5*penetration;
+
 		CollisionPoint[0]=point0;
 		CollisionPoint[1]=point1;
 		return true;
@@ -243,14 +243,23 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 			point=other.GetVertex(vert1index[0]);
 		else
 			point=GetVertex(vert0index[0]);
-		point += CollisionNormal*0.5*penetration;
+		
 		CollisionPoint[0]=point;
 		return true;
 	}
 	else if(vert0 == 2 && vert1==2)
 	{
 		numhitpoint=1;
-		Vector3h point;
+		Vector3h line0origin = GetVertex(vert0index[0]);
+		Vector3h line0direct = GetVertex(vert0index[1]) - line0origin;
+		Vector3h line1origin = GetVertex(vert1index[0]);
+		Vector3h line1direct = GetVertex(vert1index[1]) - line1origin;
+		Line3h line0; line0.Set(line0origin,line0direct);
+		Line3h line1; line1.Set(line1origin,line1direct);
+		Vector3h point0,point1;
+		ClosestPoint(point0,point1,line0,line1);
+		CollisionPoint[0]=point0*0.5+point1*0.5;
+		return true;
 	}
 	
 	

@@ -15,7 +15,7 @@ void CSphere::SetColor(float r,float g,float b)
 	Color[1]=g;
 	Color[2]=b;
 }
-void CSphere::Render(Vector3h pos,float mRedius)
+void CSphere::Render()
 {
 	glPushMatrix();
 		glLoadIdentity();

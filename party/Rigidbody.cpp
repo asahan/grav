@@ -29,14 +29,4 @@ void Rigidbody::Update(float dt)
 	SetVelocity(vec);
 	
 	
-	
-}
-Matrix3h Rigidbody::GetLocalInertia()
-{
-	return MomentInverse;
-}
-Matrix3h Rigidbody::GetWorldInertia()
-{
-	Matrix3h a=Inverse(rot);
-	return a;
 }

@@ -11,6 +11,8 @@ CollisionSphere::CollisionSphere(Vector3h mCenter, float mRedius)
 {
 	Bounding.Set(mCenter,mRedius);
 	this->SetPosition(mCenter);
+	sphere.pos = mCenter;
+	sphere.mRedius = mRedius;
 }
 void CollisionSphere::operator=(const CollisionSphere& temp )
 {
@@ -40,8 +42,13 @@ void CollisionSphere::Applyimpulse()
 {
 	
 }
+void CollisionSphere::Update(float dt)
+{
+	Rigidbody::Update(dt);
+	Bounding.SetCenter(this->pos);
+	sphere.pos = this->pos;
+}
 void CollisionSphere::Render()
 {
-	Bounding.SetCenter(this->pos);
-	sphere.Render(Bounding.mCenter,Bounding.mRedius);
+	sphere.Render();
 }

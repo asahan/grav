@@ -48,6 +48,20 @@ Matrix3h Inverse(const Matrix3h a)
 	
 	return ret;
 }
+Matrix3h Transpose(const Matrix3h& a)
+{
+	Matrix3h ret;
+	ret.index[0] = a.index[0];
+	ret.index[1] = a.index[3];
+	ret.index[2] = a.index[6];
+	ret.index[3] = a.index[1];
+	ret.index[4] = a.index[4];
+	ret.index[5] = a.index[7];
+	ret.index[6] = a.index[2];
+	ret.index[7] = a.index[5];
+	ret.index[8] = a.index[8];
+	return ret;
+}
 void Matrix3h::Identity()
 {
 	for(int i=0;i<9;i++)

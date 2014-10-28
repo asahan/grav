@@ -20,7 +20,7 @@ public:
 	void operator=(const CollisionSphere* temp);
 	bool HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint);
 	void Applyimpulse();
-	
+	virtual void Update(float dt);
 	virtual void Render();
 };
 

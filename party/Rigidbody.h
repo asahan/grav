@@ -13,8 +13,9 @@ public:
 	Vector3h Force;
 	
 	Matrix3h rot;
-	Matrix3h MomentInverse;
-	Matrix3h WorldMomentInverse;
+	Matrix3h inertia;
+	Matrix3h invinertia;
+	
 	
 	
 	Vector3h AngVelocity;
@@ -30,7 +31,7 @@ public:
 	inline void SetMass(float mass) { mMass = mass; }
 	inline float GetMass() { return mMass; }
 	inline float GetInvMass() { return 1/mMass; }
-	void Update(float dt);
+	virtual void Update(float dt);
 	inline void SetVelocity(Vector3h vec) { Velocity = vec; }
 	inline Vector3h GetVelocity() { return Velocity; }
 	inline void SetGravity(Vector3h grav) { Gravity =  grav; }
@@ -38,8 +39,11 @@ public:
 	inline float GetElastictity() { return Elasticity;}
 	inline void SetAngVelocity(Vector3h ang) { AngVelocity = ang; }
 	inline Vector3h GetAngVelocity() { return AngVelocity; }
-	Matrix3h GetLocalInertia();
-	Matrix3h GetWorldInertia();
+	inline void Setinertia(const Matrix3h& inertia ){ this->inertia = inertia; invinertia = Inverse(inertia);}
+	inline Matrix3h GetLocalInertia() { return inertia; }
+	inline Matrix3h GetWorldInertia() { return (rot*inertia*Transpose(rot)); }
+	inline Matrix3h GetinverseInertia() { return invinertia; }
+	inline Matrix3h GetinverseWorldInertia(){ return (rot*invinertia*Transpose(rot));}
 	
 
 };
