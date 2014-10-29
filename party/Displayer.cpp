@@ -56,10 +56,12 @@ void Displayer::Resize( unsigned int width, unsigned int height )
 
     
     glMatrixMode(GL_PROJECTION);                        
-    glLoadIdentity();                               
+    glLoadIdentity();             
+             
     gluPerspective(mFOV, (GLfloat)width/(GLfloat)height, mNear, mFar);
-   
-    glMatrixMode(GL_MODELVIEW);                         
+	gluLookAt(20,10,10,0,0,0,0,0,1);     
+    glMatrixMode(GL_MODELVIEW);        
+	                 
     glLoadIdentity(); 
 	
    

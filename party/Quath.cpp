@@ -126,3 +126,13 @@ void Quath::operator*=(const Quath& quat)
 	y = w*quat.y - x*quat.z + y*quat.w + z*quat.x;
 	z = w*quat.z + x*quat.y - y*quat.x + z*quat.w;
 }
+Quath Quath::operator*(float quat)
+{
+	Quath ret;
+	ret.w = w*quat, ret.x = x*quat, ret.y = y*quat , ret.z = z*quat;
+	return ret;
+}
+void Quath::operator*=(float quat)
+{
+	w = w*quat, x = x*quat, y = y*quat , z = z*quat;
+}

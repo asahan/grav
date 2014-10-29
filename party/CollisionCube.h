@@ -4,6 +4,8 @@
 #include "Rigidbody.h"
 #include "CCube.h"
 #include "Quath.h"
+#include "Matrix4h.h"
+#include "Vector4h.h"
 class CollisionCube : public Rigidbody
 {
 	CCube cube;
@@ -13,7 +15,7 @@ public:
 	~CollisionCube();
 	CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,float mass);
 	
-	void UpdateMatrix();
+	
 	void SetColorFace(int i,float r,float g,float b);
 	void operator=(const CollisionCube& temp );
 	void operator=(const CollisionCube* temp);

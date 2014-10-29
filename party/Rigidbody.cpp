@@ -14,19 +14,41 @@ Rigidbody::~Rigidbody()
 void Rigidbody::Update(float dt)
 {
 	
-	//Runge-Kutta 4 method
-	//h=dt
-	//k1 = f(xn,yn)
-	//k2 = f(xn + h/2, yn+ h/2*k1)
-	//k3 = f(xn + h/2, yn + h/2*k2)
-	//k4 = f(xn + h, yn + hk3)
-	//yn+1 = yn + h/6(k1 + 2*k2 + 2*k3 + k4)
-	float h=dt;
-	Vector3h vec = Velocity + Gravity*h;
-	pos = pos + vec*h;
 	
+	//////////linearvelocity update
 	
+	Vector3h vec = Velocity + acc*dt;
 	SetVelocity(vec);
+	pos =pos + Velocity*dt;
 	
+	///////rotation update
+	Quath vel(0,AngVelocity.x,AngVelocity.y,AngVelocity.z);
+	vel = vel*rotation;
+	vel*=0.5*dt;
+	rotation += vel;
+	rotation.Normalize();
+	
+	////////////////////
+	
+	float damping=0.85;
+	damping = powf(damping,dt);
+	Velocity *= damping;
+	AngVelocity*= damping;
+
+	UpdateMatrix();
+
+}
+void Rigidbody::UpdateMatrix()
+{
+	this->rotation.ToRatationMatrix(this->rot);
+	
+	Matrix4h matR;
+	matR.Set(this->rot);
+	
+	Matrix4h matT; matT.Identity();
+	Vector4h trans(pos.x,pos.y,pos.z,1.);
+	matT.SetCuloumn(3,trans);
+	
+	matWorld =matT*matR;
 	
 }

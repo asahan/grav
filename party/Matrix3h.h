@@ -15,6 +15,10 @@ public:
 	void Identity();
 	Matrix3h Inverse();
 	friend Matrix3h Transpose(const Matrix3h& a);
+	Vector3h GetRow(unsigned int i);
+	Vector3h GetCol(unsigned int i);
+	void SetRow(unsigned int i,const Vector3h& a);
+	void SetCol(unsigned int i,const Vector3h& a);
 	void operator=(const Matrix3h& a);
 	Vector3h operator*(const Vector3h& a);
 	Matrix3h operator*(const Matrix3h& a);

@@ -68,6 +68,76 @@ void Matrix3h::Identity()
 		this->index[i]=0;
 	index[0]=index[4]=index[8]=1;
 }
+Vector3h Matrix3h::GetRow(unsigned int i)
+{
+	Vector3h ret;
+	switch(i){
+		case 0:
+		ret.x = index[0]; ret.y = index[3]; ret.z = index[6];
+		break;
+		case 1:
+		ret.x = index[1]; ret.y = index[4]; ret.z = index[7];
+		break;
+		case 2:
+		ret.x = index[2]; ret.y = index[5]; ret.z = index[8];
+		break;
+		default:
+		ret.x =0; ret.y = 0; ret.z = 0;
+		break;
+	}
+	return ret;
+}
+Vector3h Matrix3h::GetCol(unsigned int i)
+{
+	Vector3h ret;
+	switch(i){
+		case 0:
+		ret.x = index[0]; ret.y = index[1]; ret.z = index[2];
+		break;
+		case 1:
+		ret.x = index[3]; ret.y = index[4]; ret.z = index[5];
+		break;
+		case 2:
+		ret.x = index[6]; ret.y = index[7]; ret.z = index[8];
+		break;
+		default:
+		ret.x =0; ret.y = 0; ret.z = 0;
+		break;
+	}
+	return ret;
+}
+void Matrix3h::SetRow(unsigned int i,const Vector3h& a)
+{
+	switch(i){
+		case 0:
+		index[0] = a.x, index[3] = a.y, index[6] = a.z;
+		break;
+		case 1:
+		index[1] = a.x, index[4] = a.y, index[7] = a.z;
+		break;
+		case 2:
+		index[2] = a.x, index[5] = a.y, index[8] = a.z;
+		break;
+		default:
+		break;
+	}
+}
+void Matrix3h::SetCol(unsigned int i,const Vector3h& a)
+{
+	switch(i){
+		case 0:
+		index[0] = a.x, index[1] = a.y, index[2] = a.z;
+		break;
+		case 1:
+		index[3] = a.x, index[4] = a.y, index[5] = a.z;
+		break;
+		case 2:
+		index[6] = a.x, index[7] = a.y, index[8] = a.z;
+		break;
+		default:
+		break;
+	}
+}
 void Matrix3h::operator=(const Matrix3h& a)
 {
 	for(int i=0;i<9;i++)

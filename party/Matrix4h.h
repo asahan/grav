@@ -12,6 +12,7 @@ public:
 	Matrix4h(GLfloat a[4][4]);
 	Matrix4h();
 	~Matrix4h();
+	friend Matrix4h Transpose(const Matrix4h& a);
 	void Set(const Matrix3h a);
 	void SetRow(unsigned int i,const Vector4h& a);
 	void SetCuloumn(unsigned int i,const Vector4h& a);

@@ -13,6 +13,7 @@ CollisionCube::CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,flo
 	SetPosition(pos);
 	obb.SetCenter(pos);
 	obb.SetExtent(Extent);
+	cube.Set(Extent);
 	Quath rZ; rZ.Set(Vector3h(0,0,1),rotation.z);
 	Quath rY; rY.Set(Vector3h(0,1,0),rotation.y);
 	Quath rX; rX.Set(Vector3h(1,0,0),rotation.x);
@@ -35,13 +36,7 @@ CollisionCube::CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,flo
 	UpdateMatrix();
 }
 
-void CollisionCube::UpdateMatrix()
-{
-	
-	this->rotation.ToRatationMatrix(this->rot);
-	
-	Matrix3h matT;
-}
+
 void CollisionCube::SetColorFace(int i,float r,float g,float b) 
 { 
 	switch(i){
@@ -68,8 +63,13 @@ void CollisionCube::SetColorFace(int i,float r,float g,float b)
 void CollisionCube::Update(float dt)
 {
 	Rigidbody::Update(dt);
+	obb.SetAxis(this->rot.GetCol(0),this->rot.GetCol(1),this->rot.GetCol(2));
+	obb.SetCenter(this->GetPosition());
+	cube.Set(this->matWorld);
+	
 }
 void CollisionCube::Render()
 {
+	cube.Set(this->matWorld);
 	cube.Render();
 }

@@ -13,10 +13,7 @@ Matrix4h::Matrix4h(GLfloat a[4][4])
 }
 Matrix4h::Matrix4h()
 {
-	for(int i=0;i<16;i++)
-		this->index[i]=0;
-	
-	index[0]=index[5]=index[10]=index[15]=1;
+	Identity();
 }
 Matrix4h::~Matrix4h()
 {
@@ -101,7 +98,27 @@ Vector4h Matrix4h::operator*(const Vector4h& a)
 	
 }
  
- 
+Matrix4h Transpose(const Matrix4h& a)
+{
+	Matrix4h ret;
+	ret.index[0] = a.index[0];
+	ret.index[1] = a.index[4];
+	ret.index[2] = a.index[8];
+	ret.index[3] = a.index[12];
+	ret.index[4] = a.index[1];
+	ret.index[5] = a.index[5];
+	ret.index[6] = a.index[9];
+	ret.index[7] = a.index[13];
+	ret.index[8] = a.index[2];
+	ret.index[9] = a.index[6];
+	ret.index[10] = a.index[10];
+	ret.index[11] = a.index[14];
+	ret.index[12] = a.index[3];
+	ret.index[13] = a.index[7];
+	ret.index[14] = a.index[11];
+	ret.index[15] = a.index[15];
+	return ret;
+}
 Matrix4h Matrix4h::operator*(const Matrix4h& a)
 {
 	GLfloat temp[16]={0,};

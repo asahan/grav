@@ -19,11 +19,15 @@ void CSphere::Render()
 {
 	glPushMatrix();
 		glLoadIdentity();
-		gluLookAt(20,10,10,0,0,0,0,0,1);
+		
 		glColor3f(Color[0],Color[1],Color[2]);
-		glTranslatef(pos.x,pos.y,pos.z);
+		glMultMatrixf(mat.index);
+	
 		glutSolidSphere( mRedius, 24, 12 );
+		
+		
 	glPopMatrix();
+	
 	glFlush();
 	
 	 
