@@ -7,14 +7,41 @@ CollisionCube::CollisionCube()
 CollisionCube::~CollisionCube()
 {
 }
-CollisionCube::CollisionCube(Vector3h min, Vector3h max)
+CollisionCube::CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,float mass)
 {
-	Vector3h temp = max - min;
-	temp = temp * 0.5; 
-	temp = min + temp;
-	this->SetPosition(temp);
+	SetMass(mass);
+	SetPosition(pos);
+	obb.SetCenter(pos);
+	obb.SetExtent(Extent);
+	Quath rZ; rZ.Set(Vector3h(0,0,1),rotation.z);
+	Quath rY; rY.Set(Vector3h(0,1,0),rotation.y);
+	Quath rX; rX.Set(Vector3h(1,0,0),rotation.x);
+	this->rotation = rZ;
+	this->rotation *= rY;
+	this->rotation *= rX;
+	this->rotation.Normalize();
+	
+	Vector3h iner= Extent*2;
+	float xx = Extent.x * Extent.x;
+	float yy = Extent.y * Extent.y;
+	float zz = Extent.z * Extent.z;
+	float inerm = (mass/12);
+	float ix = inerm*(yy+zz);
+	float iy = inerm*(xx+zz);
+	float iz = inerm*(xx+yy);
+	float inertia[9] = { ix,0,0,0,iy,0,0,0,iz};
+	Matrix3h inertiatensor(inertia);
+	this->SetLocalinertia(inertiatensor);
+	UpdateMatrix();
 }
 
+void CollisionCube::UpdateMatrix()
+{
+	
+	this->rotation.ToRatationMatrix(this->rot);
+	
+	Matrix3h matT;
+}
 void CollisionCube::SetColorFace(int i,float r,float g,float b) 
 { 
 	switch(i){

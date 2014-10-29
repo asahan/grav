@@ -16,6 +16,8 @@ public:
 	void SetRow(unsigned int i,const Vector4h& a);
 	void SetCuloumn(unsigned int i,const Vector4h& a);
 	
+	void Identity();
+	
 	void operator=(const Matrix4h& a);
 	Vector4h operator*(const Vector4h& a);
 	Matrix4h operator*(const Matrix4h& a);

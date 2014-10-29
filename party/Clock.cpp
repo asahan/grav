@@ -18,7 +18,7 @@ unsigned int Clock::GetTicks()
     
 void Clock::Update()
 {
-	float newTime = ((float)GetTicks())*0.001f;
+	float newTime = ((float)GetTicks())*0.0001f;
     mElapsedTime = newTime - mCurrentTime;
     mCurrentTime = newTime;
 }

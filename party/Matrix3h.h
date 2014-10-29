@@ -13,7 +13,7 @@ public:
 	~Matrix3h();
 	
 	void Identity();
-	friend Matrix3h Inverse(const Matrix3h& a);
+	Matrix3h Inverse();
 	friend Matrix3h Transpose(const Matrix3h& a);
 	void operator=(const Matrix3h& a);
 	Vector3h operator*(const Vector3h& a);

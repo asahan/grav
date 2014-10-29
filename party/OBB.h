@@ -16,6 +16,9 @@ public:
 	OBB(const OBB& other);
 	~OBB();
 	
+	void SetCenter(const Vector3h& pos);
+	void SetAxis(const Vector3h& Axisx,const Vector3h& Axisy,const Vector3h& Axisz);
+	void SetExtent(const Vector3h& Extent);
 	bool SpanIntersect(OBB& a,Vector3h axis,float& penentration,Vector3h& minaxis);
 	bool Intersect(OBB& other,float& minpen,Vector3h& axis);
 	bool Intersect(BoundingSphere& other);

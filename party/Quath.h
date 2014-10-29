@@ -22,6 +22,8 @@ public:
 	
 	Quath operator+(const Quath& quat);
 	void operator+=(const Quath& quat);
+	Quath operator*(const Quath& quat);
+	void operator*=(const Quath& quat);
 
 };
 

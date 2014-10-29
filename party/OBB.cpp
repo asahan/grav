@@ -48,6 +48,22 @@ OBB::OBB(const OBB& other)
 	}
 	
 }
+void OBB::SetCenter(const Vector3h& pos)
+{
+	Center = pos;
+}
+void OBB::SetExtent(const Vector3h& Extent)
+{
+	this->Extent[0]=Extent.x;
+	this->Extent[1]=Extent.y;
+	this->Extent[2]=Extent.z;
+}
+void OBB::SetAxis(const Vector3h& Axisx,const Vector3h& Axisy,const Vector3h& Axisz)
+{
+	this->Axis[0] = Axisx;
+	this->Axis[1] = Axisy;
+	this->Axis[2] = Axisz;
+}
 bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& minaxis)
 {
 	

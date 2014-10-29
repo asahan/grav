@@ -21,14 +21,14 @@ Matrix3h::~Matrix3h()
 {
 }
 
-Matrix3h Inverse(const Matrix3h a)
+Matrix3h Matrix3h::Inverse()
 {
 	Matrix3h ret;
 	
-	float cof0 = a.index[4]*a.index[8] - a.index[5]*a.index[7];
-	float cof1 = a.index[1]*a.index[8] - a.index[2]*a.index[7];
-	float cof2 = a.index[1]*a.index[5] - a.index[2]*a.index[4];
-	float det = a.index[0]*cof0 - a.index[3]*cof1 + a.index[6]*cof2;
+	float cof0 = index[4]*index[8] - index[5]*index[7];
+	float cof1 = index[1]*index[8] - index[2]*index[7];
+	float cof2 = index[1]*index[5] - index[2]*index[4];
+	float det = index[0]*cof0 - index[3]*cof1 + index[6]*cof2;
 	if(det == 0)
 		return ret;
 	float invdet = 1/det;
@@ -37,13 +37,13 @@ Matrix3h Inverse(const Matrix3h a)
 	ret.index[1] = invdet * (-cof1);
 	ret.index[2] = invdet * cof2;
 	
-	ret.index[3] = invdet*-(a.index[3]*a.index[8] - a.index[5]*a.index[6]);
-	ret.index[4] = invdet*(a.index[0]*a.index[8] - a.index[2]*a.index[6]);
-	ret.index[5] = invdet*-(a.index[0]*a.index[5] - a.index[2]*a.index[3]);
+	ret.index[3] = invdet*-(index[3]*index[8] - index[5]*index[6]);
+	ret.index[4] = invdet*(index[0]*index[8] - index[2]*index[6]);
+	ret.index[5] = invdet*-(index[0]*index[5] - index[2]*index[3]);
 	
-	ret.index[6] = invdet*(a.index[3]*a.index[7] - a.index[4]*a.index[6]);
-	ret.index[7] = invdet*-(a.index[0]*a.index[7] - a.index[1]*a.index[6]);
-	ret.index[8] = invdet*(a.index[0]*a.index[4] - a.index[1]*a.index[3]);
+	ret.index[6] = invdet*(index[3]*index[7] - index[4]*index[6]);
+	ret.index[7] = invdet*-(index[0]*index[7] - index[1]*index[6]);
+	ret.index[8] = invdet*(index[0]*index[4] - index[1]*index[3]);
 	
 	
 	return ret;

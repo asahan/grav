@@ -3,7 +3,7 @@
 #include "OBB.h"
 #include "Rigidbody.h"
 #include "CCube.h"
-
+#include "Quath.h"
 class CollisionCube : public Rigidbody
 {
 	CCube cube;
@@ -11,8 +11,9 @@ class CollisionCube : public Rigidbody
 public:
 	CollisionCube();
 	~CollisionCube();
-	CollisionCube(Vector3h min, Vector3h max);
+	CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,float mass);
 	
+	void UpdateMatrix();
 	void SetColorFace(int i,float r,float g,float b);
 	void operator=(const CollisionCube& temp );
 	void operator=(const CollisionCube* temp);

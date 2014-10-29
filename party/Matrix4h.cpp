@@ -78,7 +78,12 @@ void Matrix4h::SetCuloumn(unsigned int i,const Vector4h& a)
 		break;
 	}
 }
-	
+void Matrix4h::Identity()
+{
+	for(int i=0;i<16;i++)
+		index[i]=0;
+	index[0]=index[5]=index[10]=index[15]=1;
+}
 void Matrix4h::operator=(const Matrix4h& a)
 {
 	for(int i=0;i<16;i++)

@@ -89,9 +89,9 @@ void Quath::ToRatationMatrix(Matrix3h& rot)
 	rot.index[2]=xz-wy;
 	rot.index[3]=xy-wz;
 	rot.index[4]=1-xx-zz;
-	rot.index[5]=yz+wz;
+	rot.index[5]=yz+wx;
 	rot.index[6]=xz+wy;
-	rot.index[7]=yz-wz;
+	rot.index[7]=yz-wx;
 	rot.index[8]=1-xx-yy;
 	
 }
@@ -109,4 +109,20 @@ void Quath::operator+=(const Quath& quat)
 	x=x+quat.x;
 	y=y+quat.y;
 	z=z+quat.z;
+}
+Quath Quath::operator*(const Quath& quat)
+{
+	Quath ret;
+	ret.w = w*quat.w - x*quat.x - y*quat.y - z*quat.z;
+	ret.x = w*quat.x + x*quat.w + y*quat.z - z*quat.y;
+	ret.y = w*quat.y - x*quat.z + y*quat.w + z*quat.x;
+	ret.z = w*quat.z + x*quat.y - y*quat.x + z*quat.w;
+	return ret;
+}
+void Quath::operator*=(const Quath& quat)
+{
+	w = w*quat.w - x*quat.x - y*quat.y - z*quat.z;
+	x = w*quat.x + x*quat.w + y*quat.z - z*quat.y;
+	y = w*quat.y - x*quat.z + y*quat.w + z*quat.x;
+	z = w*quat.z + x*quat.y - y*quat.x + z*quat.w;
 }
