@@ -280,3 +280,31 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 	
 	
 }
+bool OBB::ComputeCollision( BoundingSphere& other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint)
+{
+	Vector3h distance = other.GetCenter() - Center;
+	
+	Vector3h max = Axis[0]*Extent[0]+Axis[1]*Extent[1]+Axis[2]*Extent[2];
+	Vector3h min = max*-1;
+	
+	if(distance*min > 0){
+		Vector3h temp = min;
+		min = max;
+		max = min;
+	}
+	BoundingSphere relative(distance , other.GetRedius());
+	AABB origin(min,max);
+	Vector3h normal,point;
+	float pene;
+	if(!origin.ComputeCollision(relative,normal,pene,point))
+		return false;
+	Matrix3h inverse;
+	inverse.SetCol(0,Axis[0]); inverse.SetCol(1,Axis[1]); inverse.SetCol(2,Axis[2]);
+	inverse.Inverse();
+	CollisionNormal = inverse*normal;
+	point = inverse*point;
+	point += Center;
+	CollisionPoint = point;
+	penetration = pene;
+	return true;
+}

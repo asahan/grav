@@ -75,6 +75,46 @@ void Matrix4h::SetCuloumn(unsigned int i,const Vector4h& a)
 		break;
 	}
 }
+Vector4h Matrix4h::GetRow(unsigned int i)
+{
+	Vector4h a;
+	
+	switch(i){
+		case 0:
+		a.w = index[0],a.x = index[4],a.y = index[8],a.z = index[12];
+		break;
+		case 1:
+		a.w = index[1],a.x = index[5],a.y = index[9],a.z = index[13];
+		break;
+		case 2:
+		a.w = index[2],a.x = index[6],a.y = index[10],a.z = index[14];
+		break;
+		case 3:
+		a.w = index[3],a.x = index[7],a.y = index[11],a.z = index[15];
+		break;
+	}
+	return a;
+}
+Vector4h Matrix4h::GetCuloumn(unsigned int i)
+{
+	Vector4h a;
+	switch(i){
+		case 0:
+		a.w = index[0],a.x = index[1],a.y = index[2],a.z = index[3];
+		break;
+		case 1:
+		a.w = index[4],a.x = index[5],a.y = index[6],a.z = index[7];
+		break;
+		case 2:
+		a.w = index[8],a.x = index[9],a.y = index[10],a.z = index[11];
+		break;
+		case 3:
+		a.w = index[12],a.x = index[13],a.y = index[14],a.z = index[15];
+		break;
+	}
+	return a;
+}
+	
 void Matrix4h::Identity()
 {
 	for(int i=0;i<16;i++)

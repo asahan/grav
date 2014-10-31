@@ -13,21 +13,58 @@ CollisionPlane::CollisionPlane()
 	vertex[7]=Vector3h(-10,10,-10);
 	Center=Vector3h(0,0,0);
 	box.Set(vertex,8);
+	
 }
 
 CollisionPlane::~CollisionPlane()
 {
 }
-bool CollisionPlane::HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint)
+bool CollisionPlane::HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, Vector3h& CollisionPoint)
 {
-	if(box.ComputeCollision(other->Bounding, CollisionNormal,penetration,CollisionPoint) == true)
+	Vector3h otherpos = other->GetPosition();
+	otherpos -= normal*(other->Bounding.GetRedius());
+	float penetration = otherpos*(this->normal);
+
+	if(penetration <= 0)
 	{
-		Vector3h pos = other->GetPosition();
-		pos+=CollisionNormal*penetration;
-		other->SetPosition(pos);
+		CollisionPoint = Vector3h(otherpos.x,otherpos.y,0);
+		CollisionNormal = this->normal;
+		penetration*=-1;
+		otherpos = other->GetPosition() + this->normal*penetration;
+		other->SetPosition(otherpos);
 		return true;
 	}
+	
 	return false;
+}
+bool CollisionPlane::HandleCollision(CollisionCube* other, Vector3h& CollisionNormal, Vector3h& CollisionPoint)
+{
+	Vector3h Collisionpoint=Vector3h(0,0,0);
+	Vector3h otherpos;
+	float num=0;
+	for(int i=0; i<8; i++)
+	{
+		Vector3h position = other->Bounding.GetVertex(i);
+		if(position*normal <= 0)
+		{
+			num++;
+			Collisionpoint += position;
+		}
+	}
+	if(num == 0)
+		return false;
+	else {
+	Collisionpoint = Collisionpoint * (1/num);
+	CollisionPoint = Vector3h(Collisionpoint.x,Collisionpoint.y,0);
+	CollisionNormal = normal;
+	float penetration = Collisionpoint*normal*-1;
+	otherpos = other->GetPosition() + normal*penetration;
+	
+	other->SetPosition(otherpos);
+	
+	}
+	
+	
 }
 void CollisionPlane::Render()
 {

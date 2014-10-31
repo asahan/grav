@@ -2,6 +2,26 @@
 
 CollisionCube::CollisionCube()
 {
+	SetMass(5.);
+	SetPosition(Vector3h(5,5,5));
+	SetElasticity(0.5);
+	Bounding.SetCenter(GetPosition());
+	Bounding.SetExtent(Vector3h(1,1,1));
+	cube.Set(Vector3h(1,1,1));
+	baseShape = Shape_Cube;
+	
+	Vector3h iner= Vector3h(1,1,1)*2;
+	float xx = iner.x * iner.x;
+	float yy = iner.y * iner.y;
+	float zz = iner.z * iner.z;
+	float inerm = (mMass/12);
+	float ix = inerm*(yy+zz);
+	float iy = inerm*(xx+zz);
+	float iz = inerm*(xx+yy);
+	float inertia[9] = { ix,0,0,0,iy,0,0,0,iz};
+	Matrix3h inertiatensor(inertia);
+	this->SetLocalinertia(inertiatensor);
+	UpdateMatrix();
 }
 
 CollisionCube::~CollisionCube()
@@ -11,9 +31,11 @@ CollisionCube::CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,flo
 {
 	SetMass(mass);
 	SetPosition(pos);
-	obb.SetCenter(pos);
-	obb.SetExtent(Extent);
+	SetElasticity(0.5);
+	Bounding.SetCenter(pos);
+	Bounding.SetExtent(Extent);
 	cube.Set(Extent);
+	baseShape = Shape_Cube;
 	Quath rZ; rZ.Set(Vector3h(0,0,1),rotation.z);
 	Quath rY; rY.Set(Vector3h(0,1,0),rotation.y);
 	Quath rX; rX.Set(Vector3h(1,0,0),rotation.x);
@@ -23,9 +45,9 @@ CollisionCube::CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,flo
 	this->rotation.Normalize();
 	
 	Vector3h iner= Extent*2;
-	float xx = Extent.x * Extent.x;
-	float yy = Extent.y * Extent.y;
-	float zz = Extent.z * Extent.z;
+	float xx = iner.x * iner.x;
+	float yy = iner.y * iner.y;
+	float zz = iner.z * iner.z;
 	float inerm = (mass/12);
 	float ix = inerm*(yy+zz);
 	float iy = inerm*(xx+zz);
@@ -63,11 +85,12 @@ void CollisionCube::SetColorFace(int i,float r,float g,float b)
 void CollisionCube::Update(float dt)
 {
 	Rigidbody::Update(dt);
-	obb.SetAxis(this->rot.GetCol(0),this->rot.GetCol(1),this->rot.GetCol(2));
-	obb.SetCenter(this->GetPosition());
+	Bounding.SetAxis(this->rot.GetCol(0),this->rot.GetCol(1),this->rot.GetCol(2));
+	Bounding.SetCenter(this->GetPosition());
 	cube.Set(this->matWorld);
 	
 }
+
 void CollisionCube::Render()
 {
 	cube.Set(this->matWorld);

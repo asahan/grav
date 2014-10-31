@@ -1,8 +1,11 @@
 #ifndef OBB_H
 #define OBB_H
 #include "Vector3h.h"
+#include "Vector4h.h"
 #include "Matrix3h.h"
+#include "Matrix4h.h"
 #include "BoundingSphere.h"
+#include "AABB.h"
 class OBB
 {
 	Vector3h Center;
@@ -25,6 +28,7 @@ public:
 	Vector3h GetVertex(int i);
 	int GetNumHitPoints(const Vector3h& normal,const float& penetration,Vector3h* vertex,int* vertindex);
 	bool ComputeCollision( OBB& other, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numhitpoint) ;
+	bool ComputeCollision( BoundingSphere& other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint);
 };
 
 #endif // OBB_H

@@ -111,7 +111,8 @@ bool AABB::ComputeCollision( const BoundingSphere& other,Vector3h& CollisionNorm
 		return false;
 	else
 	{
-		penetration = redius - CollisionNormal.Size();
+		CollisionPoint = CollisionPoint + CollisionNormal*0.5;
+		penetration = redius - 0.5*CollisionNormal.Size();
 		CollisionNormal.normalize();
 	
 		return true;

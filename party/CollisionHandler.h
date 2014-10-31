@@ -8,35 +8,30 @@ using namespace std;
 
 struct Contact
 {
-	Vector3h Objectpos0;
-	Vector3h Objectpos1;
 	Vector3h Contactpoint;
 	Vector3h Normal;
 	float penetration;
 };
 struct CollisionPoint
 {
-	CollisionSphere *Sphere0;
-	CollisionSphere *Sphere1;
-	Contact contact;
+	Rigidbody *Sphere0;
+	Rigidbody *Sphere1;
+	std::vector<Contact> contact;
 };
-struct CollisionSpherePlane
-{
-	CollisionSphere *Sphere0;
-	Contact contact;
-};
+
 class CollisionHandler
 {
-	vector<CollisionSpherePlane*> *Coll;
 	vector<CollisionPoint*> *Collisions;
 public:
 	
 	CollisionHandler();
 	~CollisionHandler();
 	void Clear();
-	void AddCollision(CollisionSphere *sp0,CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal);
-	void AddCollision(CollisionSphere *sp1,Vector3h point, float penetration,Vector3h normal);
-	void Response();
+	void AddCollision(Rigidbody *sp0,Rigidbody *sp1,Vector3h point, float penetration,Vector3h normal);
+	void Response(float dt);
+	bool HandleCollision(CollisionSphere* sphere0,CollisionSphere* sphere1, Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit);
+	bool HandleCollision(CollisionCube* cube,CollisionSphere* sphere, Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit);
+	bool HandleCollision(CollisionCube* cube0,CollisionCube* cube1, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numHit);
 
 };
 

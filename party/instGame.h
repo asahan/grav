@@ -15,8 +15,8 @@ using namespace std;
 class instGame : public Game
 {
 public:
-	vector<CollisionSphere*> *list;
-	vector<CollisionCube*> *list1;
+	vector<Rigidbody*> *list;
+	
 	CollisionHandler collisionhandle;
 	CollisionPlane plain;
 	
@@ -25,7 +25,7 @@ public:
 	~instGame();
 	void init();
 	void CollisionDetection();
-	void CollisionResponse();
+	void CollisionResponse(float dt);
 	virtual void UpdateObjects( float dt );
     virtual void Render();
 	

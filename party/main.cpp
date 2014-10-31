@@ -4,21 +4,6 @@
 #include "Game.h"
 #include "Vector3h.h"
 
-Vector3h ac(0,-10,0);
-Vector3h vel(0,10,0);
-Vector3h pos(25,40,0);
-
-GLfloat dtime;
-
-
-void simulate(GLfloat dt)
-{
-	pos=pos+vel*dt+ac*(0.5*dt*dt);
-	vel=vel+ac*dt;
-	if(pos.y<0)
-		pos.y=0;
-		
-}
 
 void KeyboardDown(unsigned char key, int,int)
 {

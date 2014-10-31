@@ -6,9 +6,14 @@
 #include "Matrix3h.h"
 #include "Quath.h"
 #include "Matrix4h.h"
+
+#define Shape_Cube		0x0010
+#define Shape_Sphere	0x0011
+
 class Rigidbody
 {
 public:
+	unsigned short baseShape;
 	float       mMass;
 	Vector3h pos;
 	Vector3h Velocity;
@@ -50,7 +55,8 @@ public:
 	inline Matrix3h GetinverseInertia() { return invinertia; }
 	inline Matrix3h GetinverseWorldInertia(){ return (rot*invinertia*Transpose(rot));}
 	void UpdateMatrix();
-	
+	virtual void Render()=0;
+
 
 };
 

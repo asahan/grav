@@ -2,17 +2,35 @@
 
 CollisionSphere::CollisionSphere()
 {
+	Bounding.Set(Vector3h(3,3,3),1);
+	this->SetPosition(Vector3h(3,3,3));
+	this->SetMass(4.);
+	sphere.Set(this->matWorld);
+	sphere.mRedius = 1;
+	baseShape = Shape_Sphere;
+	float moment = (2/5)*mMass*1;
+	float inertia[9]={moment,0,0,0,moment,0,0,0,moment};
+	Matrix3h inertiatensor(inertia);
+	this->SetLocalinertia(inertiatensor);
+	UpdateMatrix();
 }
 
 CollisionSphere::~CollisionSphere()
 {
 }
-CollisionSphere::CollisionSphere(Vector3h mCenter, float mRedius)
+CollisionSphere::CollisionSphere(Vector3h mCenter, float mRedius,float mass)
 {
 	Bounding.Set(mCenter,mRedius);
 	this->SetPosition(mCenter);
+	this->SetMass(mass);
 	sphere.Set(this->matWorld);
 	sphere.mRedius = mRedius;
+	baseShape = Shape_Sphere;
+	
+	float moment = (2/5)*mass*mRedius*mRedius;
+	float inertia[9]={moment,0,0,0,moment,0,0,0,moment};
+	Matrix3h inertiatensor(inertia);
+	this->SetLocalinertia(inertiatensor);
 	UpdateMatrix();
 }
 void CollisionSphere::operator=(const CollisionSphere& temp )
@@ -25,20 +43,8 @@ void CollisionSphere::operator=(const CollisionSphere* temp)
 	Bounding.Set(temp->Bounding);
 	this->SetPosition(Bounding.mCenter);
 }
-bool CollisionSphere::HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint) 
-{
-	if(Bounding.ComputeCollision(other->Bounding,CollisionNormal,penetration,CollisionPoint) == true){
-		Vector3h firstpos=this->GetPosition();
-		firstpos-=CollisionNormal*0.5*penetration;
-		this->SetPosition(firstpos);
-		Vector3h secondpos=other->GetPosition();
-		secondpos+=CollisionNormal*0.5*penetration;
-		other->SetPosition(secondpos);
-		return true;
-	}
-	return false;
-	
-}
+
+
 void CollisionSphere::Applyimpulse()
 {
 	
