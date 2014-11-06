@@ -242,8 +242,8 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 		}
 		else
 		{
-			Vector3h point0=GetVertex(vert0index[0]);
-			Vector3h point1=GetVertex(vert0index[1]);
+			 point0=GetVertex(vert0index[0]);
+			point1=GetVertex(vert0index[1]);
 		}
 
 		CollisionPoint[0]=point0;

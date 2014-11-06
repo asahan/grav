@@ -2,6 +2,7 @@
 
 CollisionCube::CollisionCube()
 {
+	this->SetShape(Cube);
 	SetMass(5.);
 	SetPosition(Vector3h(5,5,5));
 	SetElasticity(0.5);
@@ -29,6 +30,7 @@ CollisionCube::~CollisionCube()
 }
 CollisionCube::CollisionCube(Vector3h pos, Vector3h rotation,Vector3h Extent,float mass)
 {
+	this->SetShape(Cube);
 	SetMass(mass);
 	SetPosition(pos);
 	SetElasticity(0.5);
@@ -81,6 +83,38 @@ void CollisionCube::SetColorFace(int i,float r,float g,float b)
 		cube.SetFaceBackColor(r,g,b);
 		
 	}
+}
+bool CollisionCube::ProcessColliding(CollisionObject* b,Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit)
+{
+	Vector3h point;
+	bool result=false;
+	if(b->GetShape() == Cube)
+	{
+		CollisionCube* temp = (CollisionCube*)b;
+		result=temp->Bounding.ComputeCollision(this->Bounding,CollisionNormal,penetration,CollisionPoint,numHit) ;
+	
+		temp->SetColorFace(0,1,0,0);
+		this->SetColorFace(0,1,0,0);
+		
+		
+	}
+	else if(b->GetShape() == Sphere)
+	{
+		Vector3h point;
+		CollisionSphere* temp = (CollisionSphere*)b;
+		result = this->Bounding.ComputeCollision(temp->Bounding,CollisionNormal,penetration,point);
+		CollisionPoint[0]=point;
+		numHit = 1; 
+		Vector3h firstpos=temp->GetPosition();
+		firstpos-=CollisionNormal*0.5*penetration;
+		temp->SetPosition(firstpos);
+		Vector3h secondpos=this->GetPosition();
+		secondpos+=CollisionNormal*0.5*penetration;
+		this->SetPosition(secondpos);
+	}
+	return result;
+	
+	
 }
 void CollisionCube::Update(float dt)
 {

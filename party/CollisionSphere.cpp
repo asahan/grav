@@ -2,6 +2,7 @@
 
 CollisionSphere::CollisionSphere()
 {
+	this->SetShape(Sphere);
 	Bounding.Set(Vector3h(3,3,3),1);
 	this->SetPosition(Vector3h(3,3,3));
 	this->SetMass(4.);
@@ -20,6 +21,7 @@ CollisionSphere::~CollisionSphere()
 }
 CollisionSphere::CollisionSphere(Vector3h mCenter, float mRedius,float mass)
 {
+	this->SetShape(Sphere);
 	Bounding.Set(mCenter,mRedius);
 	this->SetPosition(mCenter);
 	this->SetMass(mass);
@@ -44,7 +46,39 @@ void CollisionSphere::operator=(const CollisionSphere* temp)
 	this->SetPosition(Bounding.mCenter);
 }
 
-
+bool CollisionSphere::ProcessColliding(CollisionObject* b,Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit)
+{
+	Vector3h point;
+	bool result=false;
+	if(b->GetShape() == Cube)
+	{
+		CollisionCube* temp = (CollisionCube*)b;
+		result=temp->Bounding.ComputeCollision(Bounding,CollisionNormal,penetration,point);
+		CollisionPoint[0]=point;
+		numHit = 1;
+		Vector3h firstpos=this->GetPosition();
+		firstpos-=CollisionNormal*0.5*penetration;
+		this->SetPosition(firstpos);
+		Vector3h secondpos=temp->GetPosition();
+		secondpos+=CollisionNormal*0.5*penetration;
+		temp->SetPosition(secondpos);
+		
+	}
+	else if(b->GetShape() == Sphere)
+	{
+		CollisionSphere* temp = (CollisionSphere*)b;
+		result = temp->Bounding.ComputeCollision(this->Bounding,CollisionNormal,penetration,point);
+		CollisionPoint[0]=point;
+		numHit = 1; 
+		Vector3h firstpos=temp->GetPosition();
+		firstpos-=CollisionNormal*0.5*penetration;
+		temp->SetPosition(firstpos);
+		Vector3h secondpos=this->GetPosition();
+		secondpos+=CollisionNormal*0.5*penetration;
+		this->SetPosition(secondpos);
+	}
+	return result;
+}
 void CollisionSphere::Applyimpulse()
 {
 	

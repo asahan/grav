@@ -7,7 +7,7 @@
 #include "CollisionSphere.h"
 #include "Vector3h.h"
 #include "CollisionHandler.h"
-#include "CollisionCube.h"
+#include "CollisionObject.h"
 #include "CollisionPlane.h"
 #include "Rigidbody.h"
 using namespace std;
@@ -15,7 +15,7 @@ using namespace std;
 class instGame : public Game
 {
 public:
-	vector<Rigidbody*> *list;
+	vector<CollisionObject*> *list;
 	
 	CollisionHandler collisionhandle;
 	CollisionPlane plain;

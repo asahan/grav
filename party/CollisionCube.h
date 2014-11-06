@@ -4,15 +4,16 @@
 #include "OBB.h"
 #include "Rigidbody.h"
 #include "CollisionSphere.h"
+#include "CollisionObject.h"
 #include "CCube.h"
 #include "Quath.h"
 #include "Matrix4h.h"
 #include "Vector4h.h"
 
 
-class CollisionCube : public Rigidbody
+class CollisionCube : public CollisionObject
 {
-	public:
+public:
 	CCube cube;
 	OBB Bounding;
 
@@ -27,7 +28,7 @@ public:
 	void operator=(const CollisionCube* temp);
 	
 
-	
+	virtual bool ProcessColliding(CollisionObject* b,Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit);
 	void Applyimpulse();
 	virtual void Update(float dt);
 	virtual void Render();

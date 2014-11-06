@@ -164,46 +164,12 @@ void CollisionHandler::Response(float dt)
 	}
 	
 }
-bool CollisionHandler::HandleCollision(CollisionSphere* sphere0,CollisionSphere* sphere1, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numHit)
+
+bool CollisionHandler::HandleCollision(CollisionObject* object0,CollisionObject* object1, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numHit)
 {
-	numHit =0;
-	Vector3h Collpoint;
-	if(sphere0->Bounding.ComputeCollision(sphere1->Bounding,CollisionNormal,penetration,Collpoint) == true){
-		numHit =1; CollisionPoint[0]=Collpoint;
-		Vector3h firstpos=sphere0->GetPosition();
-		firstpos-=CollisionNormal*0.5*penetration;
-		sphere0->SetPosition(firstpos);
-		Vector3h secondpos=sphere1->GetPosition();
-		secondpos+=CollisionNormal*0.5*penetration;
-		sphere1->SetPosition(secondpos);
-		return true;
-	}
-	return false;
 	
-}
-bool CollisionHandler::HandleCollision(CollisionCube* cube,CollisionSphere* sphere, Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit)
-{
-	numHit =0;
-	Vector3h Collpoint;
-	if(cube->Bounding.ComputeCollision(sphere->Bounding,CollisionNormal,penetration,Collpoint) == true)
-	{
-		numHit =1; CollisionPoint[0]=Collpoint;
-		Vector3h firstpos=cube->GetPosition();
-		firstpos-=CollisionNormal*0.5*penetration;
-		cube->SetPosition(firstpos);
-		Vector3h secondpos=sphere->GetPosition();
-		secondpos+=CollisionNormal*0.5*penetration;
-		sphere->SetPosition(secondpos);
+	if(object0->ProcessColliding(object1,CollisionNormal,penetration,CollisionPoint,numHit) )
 		return true;
-	}
-	return false;
-}
-bool CollisionHandler::HandleCollision(CollisionCube* cube0,CollisionCube* cube1, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numHit)
-{
-	if(cube0->Bounding.ComputeCollision(cube1->Bounding,CollisionNormal,penetration,CollisionPoint,numHit) == true)
-		return true;
-		
 	else
 		return false;
-	
 }

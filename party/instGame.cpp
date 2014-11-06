@@ -13,7 +13,7 @@ bool Game::Create()
 
 instGame::instGame()
 {
-	list=new std::vector<Rigidbody*>();
+	list=new std::vector<CollisionObject*>();
 
 
 	list->push_back(new CollisionSphere(Vector3h(2,2,2),1,5));
@@ -21,13 +21,13 @@ instGame::instGame()
 	list->push_back(new CollisionSphere(Vector3h(3,6,6),1,4));
 	list->push_back(new CollisionSphere(Vector3h(1,3,10),1,3));
 	list->push_back(new CollisionSphere(Vector3h(5,4,9),1,3));
-	list->push_back(new CollisionCube(Vector3h(1,1,10),Vector3h(0,0,0),Vector3h(1,1,1),6));
-	//list->push_back(new CollisionCube(Vector3h(2,4,10),Vector3h(50,50,50),Vector3h(1,1,1),6));
+	list->push_back(new CollisionCube(Vector3h(9,8,10),Vector3h(50,50,50),Vector3h(1,1,1),6));
+	list->push_back(new CollisionCube(Vector3h(9,8,5),Vector3h(0,0,0),Vector3h(1,1,1),6));
 	//list->push_back(new CollisionCube(Vector3h(5,4,10),Vector3h(0,50,50),Vector3h(1,1,1),5));
 	//list->push_back(new CollisionCube(Vector3h(8,6,10),Vector3h(0,50,0),Vector3h(1,1,1),5));
 	
 	float Color[12]={0.5,0.3,0,0.5,0.5,0.3,0.7,0.2,0.5,0.6,0.1,0.9};
-	vector<Rigidbody*>::iterator it;
+	vector<CollisionObject*>::iterator it;
 	int index=0;
 	for(it=list->begin();it!=list->end();it++)
 	{
@@ -45,7 +45,7 @@ instGame::instGame()
 
 instGame::~instGame()
 {
-	vector<Rigidbody*>::iterator it;
+	vector<CollisionObject*>::iterator it;
 	for(it=list->begin();it!=list->end();it++)
 	{
 		Rigidbody * temp=*it;
@@ -59,7 +59,7 @@ void instGame::UpdateObjects( float dt )
 	collisionhandle.Clear();
 	CollisionDetection();
 	CollisionResponse(dt);
-	vector<Rigidbody*>::iterator it;
+	vector<CollisionObject*>::iterator it;
 	for(it=list->begin();it!=list->end();it++)
 	{
 		(*it)->Update(dt);
@@ -69,7 +69,7 @@ void instGame::UpdateObjects( float dt )
 void instGame::Render()
 {
 	plain.Render();
-	vector<Rigidbody*>::iterator it;
+	vector<CollisionObject*>::iterator it;
 	for(it=list->begin();it!=list->end();it++)
 	{
 		(*it)->Render();
@@ -77,7 +77,7 @@ void instGame::Render()
 }
 void instGame::CollisionDetection()
 {
-	vector<Rigidbody*>::iterator first;
+	vector<CollisionObject*>::iterator first;
 	for(first=list->begin();first!=list->end();first++)
 	{
 		Vector3h collnormal,collpoint;
@@ -92,23 +92,17 @@ void instGame::CollisionDetection()
 			collisionhandle.AddCollision((*first),NULL,collpoint,pen,collnormal);
 		}
 	}
-	vector<Rigidbody*>::iterator second;
+	vector<CollisionObject*>::iterator second;
 	for(first=list->begin();first!=list->end();first++)
 	{
 		for(second=first;second!=list->end();second++)
 			if(second != first)
 			{
-				Vector3h collnormal;Vector3h collpoint[4]; int numhit;
+				Vector3h collnormal;Vector3h collpoint[50]; int numhit;
 				float pen;
 				bool intersect;
-				if((*first)->baseShape == Shape_Cube && (*second)->baseShape == Shape_Sphere)
-					intersect = collisionhandle.HandleCollision((CollisionCube *)(*first), (CollisionSphere *)(*second),collnormal,pen,collpoint,numhit);
-				else if((*first)->baseShape == Shape_Cube && (*second)->baseShape == Shape_Cube)
-					intersect = collisionhandle.HandleCollision((CollisionCube *)(*first), (CollisionCube *)(*second),collnormal,pen,collpoint,numhit);
-				else if((*first)->baseShape == Shape_Sphere && (*second)->baseShape == Shape_Sphere)
-					intersect = collisionhandle.HandleCollision((CollisionSphere *)(*first), (CollisionSphere *)(*second),collnormal,pen,collpoint,numhit);
-				else
-					intersect = collisionhandle.HandleCollision((CollisionCube *)(*second), (CollisionSphere *)(*first),collnormal,pen,collpoint,numhit);
+				intersect = collisionhandle.HandleCollision(*first, *second ,collnormal,pen,collpoint,numhit);
+			
 				if(intersect)
 				{
 					for(int i = 0; i < numhit; i++ )

@@ -1,6 +1,7 @@
 #ifndef COLLISIONHANDLER_H
 #define COLLISIONHANDLER_H
 #include "CollisionSphere.h"
+#include "CollisionObject.h"
 #include "CPlane.h"
 #include "Vector3h.h"
 #include <vector>
@@ -29,9 +30,7 @@ public:
 	void Clear();
 	void AddCollision(Rigidbody *sp0,Rigidbody *sp1,Vector3h point, float penetration,Vector3h normal);
 	void Response(float dt);
-	bool HandleCollision(CollisionSphere* sphere0,CollisionSphere* sphere1, Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit);
-	bool HandleCollision(CollisionCube* cube,CollisionSphere* sphere, Vector3h& CollisionNormal, float& penetration,Vector3h* CollisionPoint,int& numHit);
-	bool HandleCollision(CollisionCube* cube0,CollisionCube* cube1, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numHit);
+	bool HandleCollision(CollisionObject* object0,CollisionObject* object1, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numHit);
 
 };
 

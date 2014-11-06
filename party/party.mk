@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=10/31/14
+Date                   :=11/07/14
 CodeLitePath           :="C:\Program Files\CodeLite"
 LinkerName             :=C:\MinGW-4.8.1\bin\g++.exe 
 SharedObjectLinkerName :=C:\MinGW-4.8.1\bin\g++.exe -shared -fPIC
@@ -63,9 +63,9 @@ AS       := C:\MinGW-4.8.1\bin\as.exe
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
-Objects0=$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/CCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IntermediateDirectory)/CCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) 
 
 
 
@@ -131,6 +131,14 @@ $(IntermediateDirectory)/CollisionCube.cpp$(DependSuffix): CollisionCube.cpp
 
 $(IntermediateDirectory)/CollisionCube.cpp$(PreprocessSuffix): CollisionCube.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CollisionCube.cpp$(PreprocessSuffix) "CollisionCube.cpp"
+
+$(IntermediateDirectory)/CollisionObject.cpp$(ObjectSuffix): CollisionObject.cpp $(IntermediateDirectory)/CollisionObject.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CollisionObject.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CollisionObject.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/CollisionObject.cpp$(DependSuffix): CollisionObject.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CollisionObject.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CollisionObject.cpp$(DependSuffix) -MM "CollisionObject.cpp"
+
+$(IntermediateDirectory)/CollisionObject.cpp$(PreprocessSuffix): CollisionObject.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CollisionObject.cpp$(PreprocessSuffix) "CollisionObject.cpp"
 
 $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix): Clock.cpp $(IntermediateDirectory)/Clock.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Clock.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IncludePath)
@@ -313,6 +321,9 @@ clean:
 	$(RM) $(IntermediateDirectory)/CollisionCube.cpp$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/CollisionCube.cpp$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/CollisionCube.cpp$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/CollisionObject.cpp$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/CollisionObject.cpp$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/CollisionObject.cpp$(PreprocessSuffix)
 	$(RM) $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/Clock.cpp$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/Clock.cpp$(PreprocessSuffix)
