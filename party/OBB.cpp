@@ -92,8 +92,8 @@ bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& mi
 	float otherlength = othermax - othermin;
 	float sum = length + otherlength;
 	
-	float minimum = (min>othermin) ? othermin:min ;
-	float maximum = (max>othermax) ? max:othermax ;
+	float minimum = (min>othermin) ? othermin : min ;
+	float maximum = (max>othermax) ? max : othermax ;
 	float len = maximum - minimum;
 	
 	if(len > sum)
@@ -103,7 +103,11 @@ bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& mi
 	float pene = sum - len;
 	if(pene < penetration)
 	{
-			minaxis = axis;
+			
+			if(othermin < min)
+				minaxis = axis*-1;
+			else
+				minaxis = axis;
 			penetration = pene;
 	}
 	return true;
@@ -130,6 +134,7 @@ bool OBB::Intersect(OBB& other,float& minpen,Vector3h& axis)
 	seperatingAxis[12]=Axis[2].Cross(other.Axis[0]);
 	seperatingAxis[13]=Axis[2].Cross(other.Axis[1]);
 	seperatingAxis[14]=Axis[2].Cross(other.Axis[2]);
+	
 	for(int i=0;i<15;i++)
 	{
 		if(!SpanIntersect(other,seperatingAxis[i],minpenentration,minAxis))

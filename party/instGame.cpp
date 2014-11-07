@@ -80,16 +80,19 @@ void instGame::CollisionDetection()
 	vector<CollisionObject*>::iterator first;
 	for(first=list->begin();first!=list->end();first++)
 	{
-		Vector3h collnormal,collpoint;
+		Vector3h collnormal;
+		Vector3h collpoint[8];
 		float pen; bool intersect;
+		int count;
 		if((*first)->baseShape == Shape_Cube)
-			intersect=plain.HandleCollision((CollisionCube *)(*first),collnormal,collpoint);
+			intersect=plain.HandleCollision((CollisionCube *)(*first),collnormal,collpoint,count);
 		else
-			intersect=plain.HandleCollision((CollisionSphere *)(*first),collnormal,collpoint);
+			intersect=plain.HandleCollision((CollisionSphere *)(*first),collnormal,collpoint,count);
 	
 		if(intersect)
 		{
-			collisionhandle.AddCollision((*first),NULL,collpoint,pen,collnormal);
+			for(int i=0;i<count;i++)
+				collisionhandle.AddCollision((*first),NULL,collpoint[i],pen,collnormal);
 		}
 	}
 	vector<CollisionObject*>::iterator second;

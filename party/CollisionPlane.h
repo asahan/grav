@@ -16,8 +16,8 @@ public:
 public:
 	CollisionPlane();
 	~CollisionPlane();
-	bool HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, Vector3h& CollisionPoint);
-	bool HandleCollision(CollisionCube* other, Vector3h& CollisionNormal,  Vector3h& CollisionPoint);
+	bool HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, Vector3h* CollisionPoint,int& numHit);
+	bool HandleCollision(CollisionCube* other, Vector3h& CollisionNormal,  Vector3h* CollisionPoint,int& numHit);
 	virtual void Render();
 
 };

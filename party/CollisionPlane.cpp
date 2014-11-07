@@ -19,7 +19,7 @@ CollisionPlane::CollisionPlane()
 CollisionPlane::~CollisionPlane()
 {
 }
-bool CollisionPlane::HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, Vector3h& CollisionPoint)
+bool CollisionPlane::HandleCollision(CollisionSphere* other, Vector3h& CollisionNormal, Vector3h* CollisionPoint,int& numHit)
 {
 	Vector3h otherpos = other->GetPosition();
 	otherpos -= normal*(other->Bounding.GetRedius());
@@ -27,7 +27,8 @@ bool CollisionPlane::HandleCollision(CollisionSphere* other, Vector3h& Collision
 
 	if(penetration <= 0)
 	{
-		CollisionPoint = Vector3h(otherpos.x,otherpos.y,0);
+		numHit = 1;
+		CollisionPoint[0] = Vector3h(otherpos.x,otherpos.y,0);
 		CollisionNormal = this->normal;
 		penetration*=-1;
 		otherpos = other->GetPosition() + this->normal*penetration;
@@ -37,30 +38,36 @@ bool CollisionPlane::HandleCollision(CollisionSphere* other, Vector3h& Collision
 	
 	return false;
 }
-bool CollisionPlane::HandleCollision(CollisionCube* other, Vector3h& CollisionNormal, Vector3h& CollisionPoint)
+bool CollisionPlane::HandleCollision(CollisionCube* other, Vector3h& CollisionNormal, Vector3h* CollisionPoint,int& numHit)
 {
-	Vector3h Collisionpoint=Vector3h(0,0,0);
 	Vector3h otherpos;
-	float num=0;
+	int num=0;
+	float penetration=0;
+	float Maxdepth=0;
 	for(int i=0; i<8; i++)
 	{
 		Vector3h position = other->Bounding.GetVertex(i);
-		if(position*normal <= 0)
+		penetration = position*normal;
+		if(penetration <= 0)
 		{
-			num++;
-			Collisionpoint += position;
+			CollisionPoint[num++]= position;
+			if(penetration < Maxdepth)
+				Maxdepth = penetration;
 		}
 	}
 	if(num == 0)
 		return false;
 	else {
-	Collisionpoint = Collisionpoint * (1/num);
-	CollisionPoint = Vector3h(Collisionpoint.x,Collisionpoint.y,0);
+	numHit = num;
+	
 	CollisionNormal = normal;
-	float penetration = Collisionpoint*normal*-1;
+	penetration = Maxdepth;
 	otherpos = other->GetPosition() + normal*penetration;
 	
+		
+	
 	other->SetPosition(otherpos);
+	return true;
 	
 	}
 	
