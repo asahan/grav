@@ -23,8 +23,8 @@ instGame::instGame()
 	list->push_back(new CollisionSphere(Vector3h(5,4,9),1,3));
 	list->push_back(new CollisionCube(Vector3h(9,8,10),Vector3h(50,50,50),Vector3h(1,1,1),6));
 	list->push_back(new CollisionCube(Vector3h(9,8,5),Vector3h(0,0,0),Vector3h(1,1,1),6));
-	//list->push_back(new CollisionCube(Vector3h(5,4,10),Vector3h(0,50,50),Vector3h(1,1,1),5));
-	//list->push_back(new CollisionCube(Vector3h(8,6,10),Vector3h(0,50,0),Vector3h(1,1,1),5));
+	list->push_back(new CollisionCube(Vector3h(5,4,10),Vector3h(0,50,50),Vector3h(1,1,1),5));
+	list->push_back(new CollisionCube(Vector3h(8,6,10),Vector3h(0,50,0),Vector3h(1,1,1),5));
 	
 	float Color[12]={0.5,0.3,0,0.5,0.5,0.3,0.7,0.2,0.5,0.6,0.1,0.9};
 	vector<CollisionObject*>::iterator it;
@@ -101,7 +101,8 @@ void instGame::CollisionDetection()
 		for(second=first;second!=list->end();second++)
 			if(second != first)
 			{
-				Vector3h collnormal;Vector3h collpoint[50]; int numhit;
+				Vector3h collnormal;Vector3h collpoint[50]; 
+				int numhit;
 				float pen;
 				bool intersect;
 				intersect = collisionhandle.HandleCollision(*first, *second ,collnormal,pen,collpoint,numhit);

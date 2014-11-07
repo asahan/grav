@@ -53,7 +53,7 @@ public:
 	inline Matrix3h GetLocalInertia() { return inertia; }
 	inline Matrix3h GetWorldInertia() { return (rot*inertia*Transpose(rot)); }
 	inline Matrix3h GetinverseInertia() { return invinertia; }
-	inline Matrix3h GetinverseWorldInertia(){ return (rot*invinertia*Transpose(rot));}
+	inline Matrix3h GetinverseWorldInertia(){ return ((rot.Inverse())*invinertia*rot);}
 	void UpdateMatrix();
 	virtual void Render()=0;
 

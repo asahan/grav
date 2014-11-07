@@ -62,7 +62,7 @@ bool CollisionPlane::HandleCollision(CollisionCube* other, Vector3h& CollisionNo
 	
 	CollisionNormal = normal;
 	penetration = Maxdepth;
-	otherpos = other->GetPosition() + normal*penetration;
+	otherpos = other->GetPosition() + normal*-penetration;
 	
 		
 	

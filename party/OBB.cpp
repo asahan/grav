@@ -73,7 +73,7 @@ bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& mi
 	for(int i=0;i<8;i++)
 	{
 		Vector3h ver=GetVertex(i);
-		float temp = ver*axis;
+		float temp = ver.Dot(axis);
 		
 		if(temp < min)
 			min = temp;
@@ -81,7 +81,7 @@ bool OBB::SpanIntersect(OBB& other,Vector3h axis,float& penetration,Vector3h& mi
 			max = temp;
 			
 		Vector3h otherver=other.GetVertex(i);
-		float othertemp = otherver*axis;
+		float othertemp = otherver.Dot(axis);
 		if(othertemp < othermin)
 			othermin = othertemp;
 		else if(othertemp > othermax)
@@ -119,21 +119,25 @@ bool OBB::Intersect(OBB& other,float& minpen,Vector3h& axis)
 	float minpenentration=10000.f;
 	Vector3h minAxis;
 	Vector3h seperatingAxis[15];
+	Vector3h otherAxis[3];
+	for(int i=0; i<3 ; i++)
+		otherAxis[i]=other.GetAxis(i);
+		
 	seperatingAxis[0]=Axis[0];
 	seperatingAxis[1]=Axis[1];
 	seperatingAxis[2]=Axis[2];
-	seperatingAxis[3]=other.Axis[0];
-	seperatingAxis[4]=other.Axis[1];
-	seperatingAxis[5]=other.Axis[2];
-	seperatingAxis[6]=Axis[0].Cross(other.Axis[0]);
-	seperatingAxis[7]=Axis[0].Cross(other.Axis[1]);
-	seperatingAxis[8]=Axis[0].Cross(other.Axis[2]);
-	seperatingAxis[9]=Axis[1].Cross(other.Axis[0]);
-	seperatingAxis[10]=Axis[1].Cross(other.Axis[1]);
-	seperatingAxis[11]=Axis[1].Cross(other.Axis[2]);
-	seperatingAxis[12]=Axis[2].Cross(other.Axis[0]);
-	seperatingAxis[13]=Axis[2].Cross(other.Axis[1]);
-	seperatingAxis[14]=Axis[2].Cross(other.Axis[2]);
+	seperatingAxis[3]=otherAxis[0];
+	seperatingAxis[4]=otherAxis[1];
+	seperatingAxis[5]=otherAxis[2];
+	seperatingAxis[6]=Axis[0].Cross(otherAxis[0]);
+	seperatingAxis[7]=Axis[0].Cross(otherAxis[1]);
+	seperatingAxis[8]=Axis[0].Cross(otherAxis[2]);
+	seperatingAxis[9]=Axis[1].Cross(otherAxis[0]);
+	seperatingAxis[10]=Axis[1].Cross(otherAxis[1]);
+	seperatingAxis[11]=Axis[1].Cross(otherAxis[2]);
+	seperatingAxis[12]=Axis[2].Cross(otherAxis[0]);
+	seperatingAxis[13]=Axis[2].Cross(otherAxis[1]);
+	seperatingAxis[14]=Axis[2].Cross(otherAxis[2]);
 	
 	for(int i=0;i<15;i++)
 	{
@@ -195,7 +199,7 @@ int OBB::GetNumHitPoints(const Vector3h& normal,const float& penetration,Vector3
 		}
 	}
 	
-	float d = max - penetration + 0.01;
+	float d = max - penetration ;
 	int numHits=0;
 	for(int i=0;i<8;i++)
 	{
@@ -211,6 +215,28 @@ int OBB::GetNumHitPoints(const Vector3h& normal,const float& penetration,Vector3
 	}
 	
 	return numHits;
+}
+void OBB::ClipLinePlane(const Vector3h& point, Vector3h& collisionpoint) 
+{
+	Vector3h center = this->Center;
+	Vector3h ret = center;
+	Vector3h distance = point - center;
+	
+	
+	for (int i=0; i<3; i++)
+	{
+		float dist = distance.Dot(this->Axis[i]);
+		
+		if (dist >  this->Extent[i]) 
+			dist =  this->Extent[i];
+		if (dist < -(this->Extent[i])) 
+			dist = -(this->Extent[i]);
+			
+		Vector3h axis = this->Axis[i];
+		ret += axis * dist;
+	}
+
+	collisionpoint = ret;
 }
 bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numhitpoint) 
 {
@@ -235,6 +261,10 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 	
 	penetration = minpenetration;
 	CollisionNormal = normal;
+	//if(vert0 >= 4 && vert1 >= 4)
+	//{
+		
+	//}
 	if((vert0 == 4 && vert1==2 ) || (vert0 == 2 && vert1==4 ))
 	{
 		numhitpoint=2;
@@ -242,13 +272,13 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 		Vector3h point1;
 		if(vert0 == 4)
 		{
-			point0=other.GetVertex(vert1index[0]);
-			point1=other.GetVertex(vert1index[1]);
+			this->ClipLinePlane(vertex1[0], point0);
+			this->ClipLinePlane(vertex1[1], point1);
 		}
 		else
 		{
-			 point0=GetVertex(vert0index[0]);
-			point1=GetVertex(vert0index[1]);
+			other.ClipLinePlane(vertex0[0], point0);
+			other.ClipLinePlane(vertex0[0], point1);
 		}
 
 		CollisionPoint[0]=point0;
@@ -271,10 +301,10 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 	else if(vert0 == 2 && vert1==2)
 	{
 		numhitpoint=1;
-		Vector3h line0origin = GetVertex(vert0index[0]);
-		Vector3h line0direct = GetVertex(vert0index[1]) - line0origin;
-		Vector3h line1origin = GetVertex(vert1index[0]);
-		Vector3h line1direct = GetVertex(vert1index[1]) - line1origin;
+		Vector3h line0origin = vertex0[0];
+		Vector3h line0direct = vertex0[1] - line0origin;
+		Vector3h line1origin = vertex1[0];
+		Vector3h line1direct = vertex1[1] - line1origin;
 		Line3h line0; line0.Set(line0origin,line0direct);
 		Line3h line1; line1.Set(line1origin,line1direct);
 		Vector3h point0,point1;
@@ -283,6 +313,7 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 		return true;
 	}
 	
+	return true;
 	
 }
 bool OBB::ComputeCollision( BoundingSphere& other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint)
