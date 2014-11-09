@@ -50,6 +50,8 @@
       <File Name="Vector4h.h"/>
       <File Name="Line3h.h"/>
       <File Name="Line3h.cpp"/>
+      <File Name="Planeh.h"/>
+      <File Name="Planeh.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="graphic">
       <File Name="CPlane.h"/>

@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=11/08/14
+Date                   :=11/10/14
 CodeLitePath           :="C:\Program Files\CodeLite"
 LinkerName             :=C:\MinGW-4.8.1\bin\g++.exe 
 SharedObjectLinkerName :=C:\MinGW-4.8.1\bin\g++.exe -shared -fPIC
@@ -64,8 +64,8 @@ AS       := C:\MinGW-4.8.1\bin\as.exe
 CodeLiteDir:=C:\Program Files\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
 Objects0=$(IntermediateDirectory)/instGame.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/CollisionObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/Clock.cpp$(ObjectSuffix) $(IntermediateDirectory)/Displayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/EventHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) $(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IntermediateDirectory)/CCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Matrix4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Quath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector4h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix) $(IntermediateDirectory)/Planeh.cpp$(ObjectSuffix) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IntermediateDirectory)/CShape.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/CSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/CLine.cpp$(ObjectSuffix) $(IntermediateDirectory)/CCube.cpp$(ObjectSuffix) $(IntermediateDirectory)/AABB.cpp$(ObjectSuffix) $(IntermediateDirectory)/BoundingSphere.cpp$(ObjectSuffix) $(IntermediateDirectory)/OBB.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rigidbody.cpp$(ObjectSuffix) 
 
 
 
@@ -228,6 +228,14 @@ $(IntermediateDirectory)/Line3h.cpp$(DependSuffix): Line3h.cpp
 $(IntermediateDirectory)/Line3h.cpp$(PreprocessSuffix): Line3h.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Line3h.cpp$(PreprocessSuffix) "Line3h.cpp"
 
+$(IntermediateDirectory)/Planeh.cpp$(ObjectSuffix): Planeh.cpp $(IntermediateDirectory)/Planeh.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/Planeh.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Planeh.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Planeh.cpp$(DependSuffix): Planeh.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Planeh.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Planeh.cpp$(DependSuffix) -MM "Planeh.cpp"
+
+$(IntermediateDirectory)/Planeh.cpp$(PreprocessSuffix): Planeh.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Planeh.cpp$(PreprocessSuffix) "Planeh.cpp"
+
 $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix): CPlane.cpp $(IntermediateDirectory)/CPlane.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Administrator/Documents/CodeLite/grav/party/CPlane.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CPlane.cpp$(DependSuffix): CPlane.cpp
@@ -357,6 +365,9 @@ clean:
 	$(RM) $(IntermediateDirectory)/Line3h.cpp$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/Line3h.cpp$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/Line3h.cpp$(PreprocessSuffix)
+	$(RM) $(IntermediateDirectory)/Planeh.cpp$(ObjectSuffix)
+	$(RM) $(IntermediateDirectory)/Planeh.cpp$(DependSuffix)
+	$(RM) $(IntermediateDirectory)/Planeh.cpp$(PreprocessSuffix)
 	$(RM) $(IntermediateDirectory)/CPlane.cpp$(ObjectSuffix)
 	$(RM) $(IntermediateDirectory)/CPlane.cpp$(DependSuffix)
 	$(RM) $(IntermediateDirectory)/CPlane.cpp$(PreprocessSuffix)

@@ -31,6 +31,7 @@ public:
 	Vector3h GetVertex(int i);
 	int GetNumHitPoints(const Vector3h& normal,const float& penetration,Vector3h* vertex,int* vertindex);
 	void ClipLinePlane(const Vector3h& point, Vector3h& collisionpoint);
+	void ClipPlanePlane(Vector3h* vert0, Vector3h* vert1, Vector3h normal0, Vector3h* points, int& numCount);
 	bool ComputeCollision( OBB& other, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numhitpoint) ;
 	bool ComputeCollision( BoundingSphere& other, Vector3h& CollisionNormal, float& penetration, Vector3h& CollisionPoint);
 };

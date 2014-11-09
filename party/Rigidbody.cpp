@@ -30,13 +30,13 @@ void Rigidbody::Update(float dt)
 	
 	////////////////////
 	
-	float damping=0.85;
+	float damping=0.8;
 	damping = powf(damping,dt);
 	Velocity *= damping;
 	AngVelocity*= damping;
 
 	UpdateMatrix();
-
+	
 }
 void Rigidbody::UpdateMatrix()
 {

@@ -88,13 +88,8 @@ void CollisionHandler::Response(float dt)
 				
 				Vector3h dv=v0 - v1;
 				float vn = dv.Dot(Normal);
-				const float allowedPenetration = 0.1f;
-				const float biasFactor = 0.1f; 
-				float biasFactorValue = biasFactor;
-				float inv_dt = dt > 0.0f ? 1.0f / dt : 0.0f;
 				
-				float penetration = it->penetration;
-				float bias = biasFactorValue * inv_dt * max(0.0f, penetration - allowedPenetration);
+				
 				
 				
 				float numerator = -(1.0f+(temp0->GetElastictity()))*vn;
@@ -122,6 +117,7 @@ void CollisionHandler::Response(float dt)
 				
 				Vector3h sum = cross0.Cross(r0) + cross1.Cross(r1);
 				knormal += sum.Dot(Normal);
+				
 				float j = numerator/knormal;
 				
 				 Vector3h jn = Normal * j;
@@ -149,6 +145,7 @@ void CollisionHandler::Response(float dt)
 				
 				
 				///////////////tangent
+				
 				Vector3h tangent = Vector3h(0,0,0);
 				tangent = dv - ( Normal* dv.Dot(Normal));
 				tangent.normalize();
@@ -197,7 +194,7 @@ void CollisionHandler::Response(float dt)
 			}
 			
 			
-			
+			\
 			
 		
 		}

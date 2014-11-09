@@ -161,25 +161,26 @@ Vector3h OBB::GetVertex(int i)
 			ret=Center+Axis[0]*Extent[0]+Axis[1]*Extent[1]+Axis[2]*Extent[2];
 		break;
 		case 1:
-			ret=Center+Axis[0]*Extent[0]+Axis[1]*Extent[1]-Axis[2]*Extent[2];
+			ret=Center-Axis[0]*Extent[0]+Axis[1]*Extent[1]+Axis[2]*Extent[2];
 		break;
 		case 2:
-			ret=Center+Axis[0]*Extent[0]-Axis[1]*Extent[1]+Axis[2]*Extent[2];
+			ret=Center-Axis[0]*Extent[0]-Axis[1]*Extent[1]+Axis[2]*Extent[2];
 		break;
 		case 3:
-			ret=Center+Axis[0]*Extent[0]-Axis[1]*Extent[1]-Axis[2]*Extent[2];
+			ret=Center+Axis[0]*Extent[0]-Axis[1]*Extent[1]+Axis[2]*Extent[2];
 		break;
+		
 		case 4:
-			ret=Center-Axis[0]*Extent[0]+Axis[1]*Extent[1]+Axis[2]*Extent[2];
+			ret=Center+Axis[0]*Extent[0]+Axis[1]*Extent[1]-Axis[2]*Extent[2];
 		break;
 		case 5:
 			ret=Center-Axis[0]*Extent[0]+Axis[1]*Extent[1]-Axis[2]*Extent[2];
 		break;
 		case 6:
-			ret=Center-Axis[0]*Extent[0]-Axis[1]*Extent[1]+Axis[2]*Extent[2];
+			ret=Center-Axis[0]*Extent[0]-Axis[1]*Extent[1]-Axis[2]*Extent[2];
 		break;
 		case 7:
-			ret=Center-Axis[0]*Extent[0]-Axis[1]*Extent[1]-Axis[2]*Extent[2];
+			ret=Center+Axis[0]*Extent[0]-Axis[1]*Extent[1]-Axis[2]*Extent[2];
 		break;
 		default:
 		;
@@ -238,6 +239,11 @@ void OBB::ClipLinePlane(const Vector3h& point, Vector3h& collisionpoint)
 
 	collisionpoint = ret;
 }
+void OBB::ClipPlanePlane(Vector3h* vert0, Vector3h* vert1, Vector3h normal0,Vector3h* points, int& numCount)
+{
+	
+	return;
+}
 bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetration, Vector3h* CollisionPoint,int& numhitpoint) 
 {
 	
@@ -261,10 +267,26 @@ bool OBB::ComputeCollision(OBB& other, Vector3h& CollisionNormal, float& penetra
 	
 	penetration = minpenetration;
 	CollisionNormal = normal;
-	//if(vert0 >= 4 && vert1 >= 4)
-	//{
+	/*
+	if(vert0 >= 4 && vert1 >= 4)
+	{
+		Vector3h face0normal = normal;
+		Vector3h face1normal = norm;
+		Vector3h face0vertex[4];
+		Vector3h face1vertex[4];
+		Vector3h facevertex[8];
+		for(int i=0;i<4;i++)
+		{
+			face0vertex[i]=GetVertex(vert0index[i]);
+			face1vertex[i]=other.GetVertex(vert1index[i]);
+			face1vertex[i]= face1vertex[i] + face0normal*(face0normal.Dot(face0vertex[0]-face1vertex[i]));
+			facevertex[i] = face0vertex[i];
+			facevertex[i+4] = face1vertex[i];
+		}
+		 
 		
-	//}
+		
+	}*/
 	if((vert0 == 4 && vert1==2 ) || (vert0 == 2 && vert1==4 ))
 	{
 		numhitpoint=2;

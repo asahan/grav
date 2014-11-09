@@ -70,6 +70,13 @@ float Vector3h::Dot(const Vector3h a)
 {
 	return x*a.x+y*a.y+z*a.z;
 }
+bool Vector3h::operator==(const Vector3h& a)
+{
+	if(x == a.x && y == a.y && z == a.z)
+		return true;
+	else
+		return false;
+}
 void Vector3h::operator+=(const Vector3h& a)
 {
 	x+=a.x,y+=a.y,z+=a.z;

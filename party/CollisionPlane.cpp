@@ -48,23 +48,32 @@ bool CollisionPlane::HandleCollision(CollisionCube* other, Vector3h& CollisionNo
 	{
 		Vector3h position = other->Bounding.GetVertex(i);
 		penetration = position*normal;
-		if(penetration <= 0)
-		{
-			CollisionPoint[num++]= position;
-			if(penetration < Maxdepth)
-				Maxdepth = penetration;
+		if(penetration < Maxdepth){
+			Maxdepth = penetration;
 		}
+		
 	}
+	for(int i=0; i<8; i++)
+	{
+		Vector3h position = other->Bounding.GetVertex(i);
+		penetration = position*normal;
+		if(penetration == Maxdepth){
+			CollisionPoint[0]+= position + normal*-penetration;
+			num++;
+		}
+		
+	}
+	
 	if(num == 0)
 		return false;
-	else {
-	numHit = num;
 	
+	else {
+	numHit = 1;
+	CollisionPoint[0]=CollisionPoint[0]*(1/num);
 	CollisionNormal = normal;
 	penetration = Maxdepth;
 	otherpos = other->GetPosition() + normal*-penetration;
 	
-		
 	
 	other->SetPosition(otherpos);
 	return true;

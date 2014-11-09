@@ -22,6 +22,7 @@ public:
 	Vector3h GetDirect();
 	friend void ClosestPoint(Vector3h& p0, Vector3h& p1, Line3h& line0, Line3h& line1);
 	
+	bool IntersectionPoint(Line3h p1,Vector3h& point);
 	
 	
 	

@@ -72,3 +72,30 @@ void ClosestPoint(Vector3h& p0, Vector3h& p1, Line3h& line0, Line3h& line1)
     }
 	return ;
 }
+bool Line3h::IntersectionPoint(Line3h p1 , Vector3h& point)
+{
+	Vector3h Line0Point[2];
+	Vector3h Line1Point[2];
+	Line0Point[0] = this->Origin;
+	Line0Point[1] = this->Origin + this->Direct;
+	p1.Get(Line1Point[0],Line1Point[1]);
+	Line1Point[1] = Line1Point[0] + Line1Point[1];
+	float t0,t1;
+	t0 = (Line0Point[1].x - Line0Point[0].x)*(Line1Point[1].y - Line1Point[0].y) - (Line0Point[1].y - Line0Point[0].y)*(Line1Point[1].x - Line1Point[0].x);
+	if(t0 == 0)
+	{
+		Vector3h diff = this->Origin - Line1Point[0];
+		Vector3h direct = diff.Cross(this->Direct);
+		if(direct == Vector3h(0,0,0)){
+			point = Vector3h(0,0,0);
+		}
+			return false;
+	}
+	t1 = (Line0Point[1].y - Line1Point[1].y)*(Line1Point[1].x - Line1Point[0].x) - (Line0Point[1].x - Line1Point[1].x)*(Line1Point[1].y - Line1Point[0].y);
+	
+	float t = t1 / t0;
+	if(t<0 || t>1)
+		return false;
+	point = this->Origin + this->Direct*t;
+	return true;
+}
